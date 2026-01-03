@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -6,11 +7,15 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     public float speed = 4;
+    public float shootCooldown = 1f;
 
     private InputSystem_Actions inputActions;
     private Vector2 input = new();
     private Rigidbody2D rb;
+    private bool _isFlipped = false;
     private Shooter shooter;
+    private bool _isShootFliped = false;
+    private Coroutine flipCooldownCoroutine;
 
     private void Awake()
     {
@@ -36,6 +41,7 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         input = inputActions.Player.Move.ReadValue<Vector2>();
+        if (!_isShootFliped) { TryFlip(input); }
         Vector2 newPosition = rb.position + input * speed * Time.fixedDeltaTime;
         rb.MovePosition(newPosition);
     }
@@ -43,8 +49,21 @@ public class Player : MonoBehaviour
     private void OnAttackPressed(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
         var pos = GetMouseWorldPosition();
-        //Debug.Log(pos);
-        shooter.Shoot(new(pos.x, pos.y));
+        Vector2 pos2d = new(pos.x, pos.y);
+        TryFlip(pos2d);
+        if (flipCooldownCoroutine != null)
+        {
+            StopCoroutine(flipCooldownCoroutine);
+        }
+        flipCooldownCoroutine = StartCoroutine(FlipCooldown());
+        shooter.Shoot(pos2d);
+    }
+
+    private IEnumerator FlipCooldown()
+    {
+        _isShootFliped = true;
+        yield return new WaitForSeconds(shootCooldown);
+        _isShootFliped = false;
     }
     Vector3 GetMouseWorldPosition()
     {
@@ -53,4 +72,21 @@ public class Player : MonoBehaviour
         );
     }
 
+    private bool TryFlip(Vector2 direction)
+    {
+        if (direction.x > 0 && _isFlipped || direction.x < 0 && !_isFlipped)
+        {
+            Flip();
+            return true;
+        }
+        return false;
+    }
+
+    private void Flip()
+    {
+        _isFlipped = !_isFlipped;
+        Vector3 scale = transform.localScale;
+        scale.x *= -1;
+        transform.localScale = scale;
+    }
 }

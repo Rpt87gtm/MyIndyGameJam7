@@ -689,6 +689,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 8.04
+  shootCooldown: 0.33
 --- !u!50 &1468225676
 Rigidbody2D:
   serializedVersion: 5
