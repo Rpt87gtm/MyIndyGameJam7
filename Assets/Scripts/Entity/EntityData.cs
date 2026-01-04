@@ -14,14 +14,8 @@ public class EntityData
     [SerializeField] private int _curHp;
     [Min(0)]
     [SerializeField] private float _curSpeed;
-    public int DefaultHp => _maxHp;
+    public int MaxHp => _maxHp;
     public float DefaultSpeed => _defaultSpeed;
-
-    void Start()
-    {
-        _curHp = _maxHp;
-    }
-
 
     public void SetDefaultSpeed()
     {
