@@ -7,12 +7,38 @@ public class LineBullet : Bullet
     public float speed = 10;
     private Rigidbody2D rb;
 
+    public GameObject destroyParticle;
+
     public override void Shoot(Vector2 direction)
     {
         rb = GetComponent<Rigidbody2D>();
         var movement = direction * speed;
         base.Shoot(direction);
-        Debug.Log(movement);
         rb.linearVelocity = movement;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // TODO здесь получай компонент на который попадание аффектит
+
+
+        if (collision.contactCount > 0)
+        {
+            ContactPoint2D contact = collision.GetContact(0);
+            Vector2 collisionNormal = contact.normal;
+            Vector2 collisionPoint = contact.point;
+
+            // Рассчитываем угол для параллельности поверхности
+            float angle = Mathf.Atan2(collisionNormal.y, collisionNormal.x) * Mathf.Rad2Deg - 90f;
+            Quaternion particleRotation = Quaternion.Euler(0, 0, angle);
+
+            Instantiate(destroyParticle, collisionPoint, particleRotation);
+        }
+        DestroyBullet();
+    }
+
+    public override void DestroyBullet()
+    {
+        base.DestroyBullet();
     }
 }

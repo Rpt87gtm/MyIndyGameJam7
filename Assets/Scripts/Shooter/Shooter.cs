@@ -19,7 +19,9 @@ public class Shooter : MonoBehaviour
     }
     private void ShootBullet(Vector2 direction, BulletType bulletType)
     {
-        var bullet = Instantiate(bulletsList.GetBulletByType(bulletType).prefab, spawnPosition.position, spawnPosition.rotation);
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90;
+        Quaternion rotation = Quaternion.Euler(0, 0, angle);
+        var bullet = Instantiate(bulletsList.GetBulletByType(bulletType).prefab, spawnPosition.position, rotation);
         var bulletComponent = bullet.GetComponent<Bullet>();
         if (bulletComponent == null)
         {
@@ -47,7 +49,7 @@ public class Shooter : MonoBehaviour
             Debug.LogWarning("We shooting now");
             return false;
         }
-        Vector2 position2D = new Vector2(transform.position.x, transform.position.y);
+        Vector2 position2D = new Vector2(spawnPosition.position.x, spawnPosition.position.y);
         var moveDirection = (target - position2D).normalized;
         shootCoro = StartCoroutine(ShootBullets(moveDirection, bulletTypes));
         return true;
