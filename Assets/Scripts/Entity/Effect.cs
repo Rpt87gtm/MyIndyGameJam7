@@ -31,8 +31,8 @@ public class Effect: MonoBehaviour
     public virtual void StartEffect(Entity entity)
     {
         _curDuration = _duration;
-        BuffEffects();
         DropEffects(entity);
+        BuffEffects(entity);
     }
 
     public virtual void DestroyEffect()
@@ -53,10 +53,11 @@ public class Effect: MonoBehaviour
         {
             Debug.Log(effect);
         }
+        effects.Add(this);
         entity.ChangeListEffects(effects);
     }
 
-    protected virtual void BuffEffects()
+    protected virtual void BuffEffects(Entity entity)
     {
     }
 
@@ -82,6 +83,22 @@ public class Effect: MonoBehaviour
         }
     }
 
+    protected void RemoveEffect(Entity entity, TypeEffect typeEffect)
+    {
+        var destroyableEffects = entity.Effects.Where(ef => ef.Type == typeEffect).ToList();
+        foreach (var effect in destroyableEffects)
+        {
+            effect.DestroyEffect();
+        }
+
+        var effects = entity.Effects.Where(ef => !(ef.Type == typeEffect)).ToList();
+        foreach (var effect in effects)
+        {
+            Debug.Log(effect);
+        }
+        entity.ChangeListEffects(effects);
+    }
+
 
 }
 
@@ -91,5 +108,7 @@ public enum TypeEffect
     Water,
     Electric,
     Poison,
-    Frozen
+    Frozen,
+    Stun,
+    BigDamage
 }

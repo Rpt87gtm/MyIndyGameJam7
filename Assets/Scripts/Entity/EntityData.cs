@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Collections.Generic;
 
 
 
@@ -10,12 +11,16 @@ public class EntityData
     [SerializeField] private int _maxHp;
     [Min(0)]
     [SerializeField] private float _defaultSpeed;
+    [SerializeField] private List<TypeEffect> _effectResists;
     [Min(0)]
     [SerializeField] private int _curHp;
     [Min(0)]
     [SerializeField] private float _curSpeed;
+
     public int MaxHp => _maxHp;
     public float DefaultSpeed => _defaultSpeed;
+
+    public List<TypeEffect> EffectResists => _effectResists;
 
     public void SetDefaultSpeed()
     {
@@ -49,6 +54,7 @@ public class EntityData
             return false;
         return true;
     }
+
 
 
 }

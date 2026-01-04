@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using NUnit.Framework;
 using UnityEngine;
 using static UnityEngine.EventSystems.EventTrigger;
@@ -13,10 +14,15 @@ public class Entity : MonoBehaviour
 
     [SerializeField] private List<Effect> _effects = new List<Effect>();
 
+    [SerializeField] private bool _isFreeze = false;
+
     public IReadOnlyList<Effect> Effects => _effects;
+    public bool IsFreeze => _isFreeze;
 
     private Color _defaultColor;
     private SpriteRenderer _spriteRenderer;
+
+  
 
 
 
@@ -31,6 +37,7 @@ public class Entity : MonoBehaviour
     {
         _entityData.SetDefaultSpeed();
         _spriteRenderer.color = _defaultColor;
+        SetFreeze(false);
         
         foreach (var effect in Effects)
         {
@@ -40,11 +47,16 @@ public class Entity : MonoBehaviour
 
     public void AddEffect(Effect effect)
     {
+        if (_entityData.EffectResists.Contains(effect.Type))
+        {
+            return;
+        }
+
+
         GameObject createdEffectObj = Instantiate(effect.gameObject, transform.position, Quaternion.identity) as GameObject;
         createdEffectObj.transform.SetParent(transform, true);
         Effect createdEffect = createdEffectObj.GetComponent<Effect>();
         createdEffect.StartEffect(this);
-        _effects.Add(createdEffect);
     }
 
     public void ChangeSpeed(float speed)
@@ -70,10 +82,16 @@ public class Entity : MonoBehaviour
     }
 
 
-    public void Dead()
+    public virtual void Dead()
     {
         Destroy(gameObject);
     }
+
+    public void SetFreeze(bool isFreaze)
+    {
+        _isFreeze = isFreaze;
+    }
+
 
 
 
