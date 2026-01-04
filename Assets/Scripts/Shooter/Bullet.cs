@@ -1,16 +1,24 @@
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+namespace bullets
 {
-    protected Vector2 _target;
 
-    public void SetTarget(Vector2 target)
+    public class Bullet : MonoBehaviour
     {
-        _target = target;
+        protected Vector2 _direction;
+
+        public virtual void Shoot(Vector2 direction)
+        {
+            Debug.Log("shoot");
+        }
     }
 
-    public virtual void Shoot()
+    public enum BulletType
     {
-        Debug.Log("shoot");
+        Normal,
+        Fire,
+        Water,
+        Cold,
+        Electric
     }
 }

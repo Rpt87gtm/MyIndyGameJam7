@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8489431427687610512}
   - component: {fileID: 6125321188073854096}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: BulletFire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 0.3935087, b: 0.1716981, a: 1}
+  m_Color: {r: 0.6528301, g: 0.04449086, b: 0.03325733, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8d3efcb51672c64a936d49cbe3e0f9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 19.6
+  speed: 19.25
 --- !u!61 &6125321188073854096
 BoxCollider2D:
   m_ObjectHideFlags: 0

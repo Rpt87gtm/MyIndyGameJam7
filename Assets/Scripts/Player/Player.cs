@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Collections.Generic;
+using bullets;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -7,7 +9,7 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     public float speed = 4;
-    public float shootCooldown = 1f;
+    public float shootRotationCooldown = 1f;
 
     private InputSystem_Actions inputActions;
     private Vector2 input = new();
@@ -48,21 +50,24 @@ public class Player : MonoBehaviour
 
     private void OnAttackPressed(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
+        List<BulletType> bullets = new() { BulletType.Normal, BulletType.Fire, BulletType.Water, BulletType.Normal };
         var pos = GetMouseWorldPosition();
         Vector2 pos2d = new(pos.x, pos.y);
         TryFlip(pos2d);
-        if (flipCooldownCoroutine != null)
+        if (shooter.TryShoot(pos2d, bullets))
         {
-            StopCoroutine(flipCooldownCoroutine);
+            if (flipCooldownCoroutine != null)
+            {
+                StopCoroutine(flipCooldownCoroutine);
+            }
+            flipCooldownCoroutine = StartCoroutine(FlipCooldown(shootRotationCooldown * bullets.Count));
         }
-        flipCooldownCoroutine = StartCoroutine(FlipCooldown());
-        shooter.Shoot(pos2d);
     }
 
-    private IEnumerator FlipCooldown()
+    private IEnumerator FlipCooldown(float cooldown)
     {
         _isShootFliped = true;
-        yield return new WaitForSeconds(shootCooldown);
+        yield return new WaitForSeconds(cooldown);
         _isShootFliped = false;
     }
     Vector3 GetMouseWorldPosition()

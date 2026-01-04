@@ -689,7 +689,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 8.04
-  shootCooldown: 0.33
+  shootRotationCooldown: 0.2
 --- !u!50 &1468225676
 Rigidbody2D:
   serializedVersion: 5
@@ -846,8 +846,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9df652d992a02044aa7eea0d0d8446f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttetPrefab: {fileID: 2689629989360348680, guid: 9c469526cfa8e9a40a1858740728b522, type: 3}
+  bulletsList: {fileID: 11400000, guid: 7d7be726a92bf74418c84b85d71f9675, type: 2}
   spawnPosition: {fileID: 1797714057}
+  shootCooldown: 0.2
 --- !u!1 &1797714056
 GameObject:
   m_ObjectHideFlags: 0
@@ -1132,7 +1133,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 9.09
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
