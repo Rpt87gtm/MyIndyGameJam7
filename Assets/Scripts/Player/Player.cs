@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     private bool _isShootFliped = false;
     private Coroutine flipCooldownCoroutine;
     private Entity _entity;
-    [SerializeField]private List<BulletType> _bullets;
+    [SerializeField] private List<BulletType> _bullets;
 
     private void Awake()
     {
@@ -61,7 +61,10 @@ public class Player : MonoBehaviour
         Vector2 pos2d = new(pos.x, pos.y);
         TryFlip(pos2d);
         if (_bullets.Count <= 0)
+        {
+            Debug.Log("I need more bullets");
             return;
+        }
         if (shooter.TryShoot(pos2d, _bullets))
         {
             if (flipCooldownCoroutine != null)
