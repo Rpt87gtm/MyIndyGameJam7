@@ -46,10 +46,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _type: 1
-  _dropableEffects: 
+  _dropableEffects: 00000000
   _color: {r: 0, g: 1, b: 0.9921569, a: 1}
   _duration: 10
   _curDuration: 0
+  _slow: 0
 --- !u!212 &5554890705082345309
 SpriteRenderer:
   m_ObjectHideFlags: 0

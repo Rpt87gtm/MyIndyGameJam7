@@ -15,4 +15,7 @@ MonoBehaviour:
   bullets:
   - {fileID: 11400000, guid: c9a90305495e42540becafe606ff3187, type: 2}
   - {fileID: 11400000, guid: 85f2e5eacc1d4ac48ab02acedeb8181b, type: 2}
+  - {fileID: 11400000, guid: 869b7720e321ffa4a856c23eea555060, type: 2}
+  - {fileID: 11400000, guid: bcb3fe8e3ffb17d46b7e3ecf391ea384, type: 2}
+  - {fileID: 11400000, guid: 87eea8f043c77f3429c15551a6c42e90, type: 2}
   - {fileID: 11400000, guid: fba840fc22745d64ba40144833b38e77, type: 2}
