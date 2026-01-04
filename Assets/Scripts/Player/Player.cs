@@ -44,6 +44,11 @@ public class Player : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if (!_entity.IsAlive())
+        {
+            Dead();
+            return;
+        }
         if (_entity.IsFreeze)
             return;
 
@@ -104,5 +109,11 @@ public class Player : MonoBehaviour
         Vector3 scale = transform.localScale;
         scale.x *= -1;
         transform.localScale = scale;
+    }
+
+    public void Dead()
+    {
+        Destroy(gameObject);
+        Debug.Log("Вы умерли");
     }
 }

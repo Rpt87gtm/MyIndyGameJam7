@@ -55,7 +55,7 @@ public class EntityData
             _curHp = 0;
     }
 
-    public bool isAlive()
+    public bool IsAlive()
     {
         if (_curHp <= 0)
             return false;
