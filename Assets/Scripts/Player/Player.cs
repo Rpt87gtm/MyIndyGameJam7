@@ -5,10 +5,9 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(Shooter))]
+[RequireComponent(typeof(Rigidbody2D), typeof(Shooter), typeof(Entity))]
 public class Player : MonoBehaviour
 {
-    public float speed = 4;
     public float shootRotationCooldown = 1f;
 
     private InputSystem_Actions inputActions;
@@ -18,12 +17,15 @@ public class Player : MonoBehaviour
     private Shooter shooter;
     private bool _isShootFliped = false;
     private Coroutine flipCooldownCoroutine;
+    private Entity _entity;
+    [SerializeField]private List<BulletType> _bullets;
 
     private void Awake()
     {
         inputActions = new();
         rb = GetComponent<Rigidbody2D>();
         shooter = GetComponent<Shooter>();
+        _entity = GetComponent<Entity>();
     }
 
     private void Start()
@@ -42,25 +44,31 @@ public class Player : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if (_entity.IsFreeze)
+            return;
+
         input = inputActions.Player.Move.ReadValue<Vector2>();
         if (!_isShootFliped) { TryFlip(input); }
-        Vector2 newPosition = rb.position + input * speed * Time.fixedDeltaTime;
+        Vector2 newPosition = rb.position + input * _entity.Speed * Time.fixedDeltaTime;
         rb.MovePosition(newPosition);
     }
 
     private void OnAttackPressed(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        List<BulletType> bullets = new() { BulletType.Normal, BulletType.Fire, BulletType.Water, BulletType.Normal };
+        if (_entity.IsFreeze)
+            return;
         var pos = GetMouseWorldPosition();
         Vector2 pos2d = new(pos.x, pos.y);
         TryFlip(pos2d);
-        if (shooter.TryShoot(pos2d, bullets))
+        if (_bullets.Count <= 0)
+            return;
+        if (shooter.TryShoot(pos2d, _bullets))
         {
             if (flipCooldownCoroutine != null)
             {
                 StopCoroutine(flipCooldownCoroutine);
             }
-            flipCooldownCoroutine = StartCoroutine(FlipCooldown(shootRotationCooldown * bullets.Count));
+            flipCooldownCoroutine = StartCoroutine(FlipCooldown(shootRotationCooldown * _bullets.Count));
         }
     }
 
