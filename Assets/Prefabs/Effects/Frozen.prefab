@@ -50,7 +50,7 @@ MonoBehaviour:
   _color: {r: 0, g: 1, b: 0.9803922, a: 1}
   _duration: 5
   _curDuration: 1
-  _slow: 3
+  _slow: 2
   _stun: {fileID: 7671789552225500332, guid: acd1c9e4e409f9540865c2cb5e57131b, type: 3}
 --- !u!212 &1911554545689405323
 SpriteRenderer:
