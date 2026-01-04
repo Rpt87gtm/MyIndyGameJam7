@@ -50,7 +50,7 @@ MonoBehaviour:
   _color: {r: 1, g: 0.6509804, b: 0, a: 1}
   _duration: 5
   _curDuration: 0
-  _damage: 5
+  _damage: 25
   _bigDamage: {fileID: 0}
 --- !u!212 &5261120836913478300
 SpriteRenderer:

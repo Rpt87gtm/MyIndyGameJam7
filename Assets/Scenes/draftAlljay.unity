@@ -811,6 +811,56 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1308917291
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1308917293}
+  - component: {fileID: 1308917292}
+  m_Layer: 0
+  m_Name: Support
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1308917292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308917291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7729aff70b7b32f4d8e8bc0d27771afd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1468225681}
+  _fire: {fileID: 3128424628136890108, guid: 52e3fa979d6e0b947a7085a732fe0613, type: 3}
+  _water: {fileID: 7319090102748112577, guid: bce807399c87920458b7d71459e0484f, type: 3}
+  _electric: {fileID: 7459466881339965598, guid: 68c85762fb5a219489888cd4e6271a39, type: 3}
+  _poison: {fileID: 3298554203504071814, guid: 91fcefd0875ddbc479893c2181f2c1cd, type: 3}
+  _frozen: {fileID: 9145967247120277200, guid: 1f83d908f8a5e5f4e9d3a2a0712b1915, type: 3}
+--- !u!4 &1308917293
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308917291}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.76349187, y: -0.31929845, z: 0.059214316}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1468225674
 GameObject:
   m_ObjectHideFlags: 0
@@ -845,7 +895,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b4351f4627090b4d92ef168d8016a32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8.04
   shootRotationCooldown: 0.2
 --- !u!50 &1468225676
 Rigidbody2D:
@@ -1887,3 +1936,4 @@ SceneRoots:
   - {fileID: 1914248534}
   - {fileID: 1521247207}
   - {fileID: 392350031}
+  - {fileID: 1308917293}
