@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using NUnit.Framework;
 using UnityEngine;
 using static UnityEngine.EventSystems.EventTrigger;
@@ -8,37 +9,90 @@ using static UnityEngine.EventSystems.EventTrigger;
 [RequireComponent(typeof(SpriteRenderer))]
 public class Entity : MonoBehaviour
 {
-    public EntityData EntityData;
+    [SerializeField] private EntityData _entityData;
 
 
-    [ReadOnly(true)]
-    public List<Effect> Effects = new List<Effect>();
+    [SerializeField] private List<Effect> _effects = new List<Effect>();
+
+    [SerializeField] private bool _isFreeze = false;
+
+    public IReadOnlyList<Effect> Effects => _effects;
+    public bool IsFreeze => _isFreeze;
 
     private Color _defaultColor;
     private SpriteRenderer _spriteRenderer;
 
+  
+
+
+
     public void Start()
     {
+        InitEntity();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _defaultColor = _spriteRenderer.color;
     }
 
     public void FixedUpdate()
     {
-        EntityData.SetDefaultSpeed();
+        _entityData.SetDefaultSpeed();
         _spriteRenderer.color = _defaultColor;
+        SetFreeze(false);
         
         foreach (var effect in Effects)
         {
-            effect.UseEffect(this);
+            effect.Tick(this);
         }
     }
 
     public void AddEffect(Effect effect)
     {
-        effect.StartEffect(this);
-        Effects.Add(effect);
+        if (_entityData.EffectResists.Contains(effect.Type))
+        {
+            return;
+        }
+
+
+        GameObject createdEffectObj = Instantiate(effect.gameObject, transform.position, Quaternion.identity) as GameObject;
+        createdEffectObj.transform.SetParent(transform, true);
+        Effect createdEffect = createdEffectObj.GetComponent<Effect>();
+        createdEffect.StartEffect(this);
     }
+
+    public void ChangeSpeed(float speed)
+    {
+        _entityData.ChangeSpeed(speed);
+    }
+
+    public void ChangeListEffects(List<Effect> effects)
+    {
+        _effects = effects;
+    }
+
+    public void ChangeHp(int hp)
+    {
+        _entityData.ChangeHp(hp);
+        if (!_entityData.isAlive())
+            Dead();
+    }
+
+    public void InitEntity()
+    {
+        _entityData.HpSetDefault();
+    }
+
+
+    public virtual void Dead()
+    {
+        Destroy(gameObject);
+    }
+
+    public void SetFreeze(bool isFreaze)
+    {
+        _isFreeze = isFreaze;
+    }
+
+
 
 
 }
