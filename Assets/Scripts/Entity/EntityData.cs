@@ -16,11 +16,14 @@ public class EntityData
     [SerializeField] private int _curHp;
     [Min(0)]
     [SerializeField] private float _curSpeed;
+    [SerializeField] private EntityType _entityType;
 
     public int MaxHp => _maxHp;
     public float DefaultSpeed => _defaultSpeed;
 
     public List<TypeEffect> EffectResists => _effectResists;
+
+    public EntityType EntityType => _entityType;
 
     public void SetDefaultSpeed()
     {
@@ -58,3 +61,11 @@ public class EntityData
 
 
 }
+
+public enum EntityType
+{
+    Enemy,
+    Player,
+    Ally
+}
+
