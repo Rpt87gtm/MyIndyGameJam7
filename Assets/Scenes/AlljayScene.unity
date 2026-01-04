@@ -167,7 +167,7 @@ MonoBehaviour:
   _type: 4
   _dropableEffects: 00000000
   _color: {r: 0, g: 1, b: 0.9803922, a: 1}
-  _duration: 2
+  _duration: 5
   _curDuration: 1
   _slow: 3
 --- !u!212 &34259618
@@ -234,7 +234,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 296318323}
-  - component: {fileID: 296318324}
+  - component: {fileID: 296318326}
   - component: {fileID: 296318325}
   m_Layer: 0
   m_Name: Fire
@@ -258,23 +258,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &296318324
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 296318322}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b76439f1794d9e8489928c0d1635aebb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _type: 0
-  _dropableEffects: 0100000004000000
-  _color: {r: 1, g: 0.6509804, b: 0, a: 0}
-  _duration: 2
-  _curDuration: 23
 --- !u!212 &296318325
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -330,6 +313,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &296318326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 296318322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0702fc23b2da214588df4f5d5a28209, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _type: 0
+  _dropableEffects: 
+  _color: {r: 1, g: 0.6509804, b: 0, a: 1}
+  _duration: 5
+  _curDuration: 0
+  _damage: 5
+  _tickTime: 1
+  _curTickTime: 0
 --- !u!1 &362300926
 GameObject:
   m_ObjectHideFlags: 0
@@ -377,8 +380,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _type: 1
   _dropableEffects: 00000000
-  _color: {r: 0, g: 1, b: 0.99020815, a: 0}
-  _duration: 2
+  _color: {r: 0, g: 1, b: 0.99020815, a: 1}
+  _duration: 5
   _curDuration: 0
 --- !u!212 &362300929
 SpriteRenderer:
@@ -465,7 +468,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 629777350}
-  _fire: {fileID: 296318324}
+  _fire: {fileID: 296318326}
   _water: {fileID: 362300928}
   _electric: {fileID: 2136063335}
   _poison: {fileID: 1497976637}
@@ -638,8 +641,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _type: 3
   _dropableEffects: 
-  _color: {r: 0, g: 0.5660378, b: 0.17666656, a: 0}
-  _duration: 0.1
+  _color: {r: 0, g: 0.5660378, b: 0.17666656, a: 1}
+  _duration: 5
   _curDuration: 0
 --- !u!212 &1497976638
 SpriteRenderer:
@@ -880,8 +883,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _type: 2
   _dropableEffects: 
-  _color: {r: 0, g: 0.2784314, b: 0.44313726, a: 0}
-  _duration: 2
+  _color: {r: 0, g: 0.2784314, b: 0.44313726, a: 1}
+  _duration: 5
   _curDuration: 0
 --- !u!212 &2136063336
 SpriteRenderer:

@@ -13,7 +13,6 @@ public class Entity : MonoBehaviour
 
     [SerializeField] private List<Effect> _effects = new List<Effect>();
 
-    public EntityData Data => _entityData;
     public IReadOnlyList<Effect> Effects => _effects;
 
     private Color _defaultColor;
@@ -58,9 +57,22 @@ public class Entity : MonoBehaviour
         _effects = effects;
     }
 
+    public void ChangeHp(int hp)
+    {
+        _entityData.ChangeHp(hp);
+        if (!_entityData.isAlive())
+            Dead();
+    }
+
     public void InitEntity()
     {
         _entityData.HpSetDefault();
+    }
+
+
+    public void Dead()
+    {
+        Destroy(gameObject);
     }
 
 

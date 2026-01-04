@@ -36,11 +36,18 @@ public class EntityData
 
     public void ChangeHp(int hp)
     {
-        _curHp = hp;
+        _curHp += hp;
         if (_curHp > _maxHp)
             _curHp = _maxHp;
         if (_curHp < 0)
             _curHp = 0;
+    }
+
+    public bool isAlive()
+    {
+        if (_curHp <= 0)
+            return false;
+        return true;
     }
 
 
