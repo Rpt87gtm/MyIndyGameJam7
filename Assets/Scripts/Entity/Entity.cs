@@ -74,8 +74,6 @@ public class Entity : MonoBehaviour
     public void ChangeHp(int hp)
     {
         _entityData.ChangeHp(hp);
-        if (!_entityData.isAlive())
-            Dead();
     }
 
     public void InitEntity()
@@ -84,14 +82,14 @@ public class Entity : MonoBehaviour
     }
 
 
-    public virtual void Dead()
-    {
-        Destroy(gameObject);
-    }
-
     public void SetFreeze(bool isFreaze)
     {
         _isFreeze = isFreaze;
+    }
+
+    public bool IsAlive()
+    {
+        return _entityData.IsAlive();
     }
 
 
