@@ -21,6 +21,10 @@ public class EntityData
     public int MaxHp => _maxHp;
     public float DefaultSpeed => _defaultSpeed;
 
+    public float CurrentSpeed => _curSpeed;
+
+    public float CurHp => _curHp;
+
     public List<TypeEffect> EffectResists => _effectResists;
 
     public EntityType EntityType => _entityType;

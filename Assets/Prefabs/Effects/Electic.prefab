@@ -48,10 +48,10 @@ MonoBehaviour:
   _type: 2
   _dropableEffects: 
   _color: {r: 0, g: 0.2784314, b: 0.4431373, a: 1}
-  _duration: 10
+  _duration: 5
   _curDuration: 0
-  _damage: 0
-  _tickTime: 0
+  _damage: 5
+  _tickTime: 1
   _curTickTime: 0
   _electric: {fileID: 7459466881339965598}
 --- !u!212 &1312175781887941219

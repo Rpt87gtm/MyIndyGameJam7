@@ -32,7 +32,8 @@ namespace bullets
         Normal,
         Fire,
         Water,
-        Cold,
-        Electric
+        Frozen,
+        Electric,
+        Poison
     }
 }

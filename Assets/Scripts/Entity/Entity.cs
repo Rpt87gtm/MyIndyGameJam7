@@ -19,6 +19,8 @@ public class Entity : MonoBehaviour
     public IReadOnlyList<Effect> Effects => _effects;
     public bool IsFreeze => _isFreeze;
 
+    public float Speed => _entityData.CurrentSpeed;
+
     private Color _defaultColor;
     private SpriteRenderer _spriteRenderer;
 
@@ -91,6 +93,7 @@ public class Entity : MonoBehaviour
     {
         _isFreeze = isFreaze;
     }
+
 
 
 

@@ -4,6 +4,9 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class LineBullet : Bullet
 {
+
+    [SerializeField ]private Effect _effect;
+    [SerializeField] private int _baseDmg;
     public float speed = 10;
     private Rigidbody2D rb;
 
@@ -20,6 +23,13 @@ public class LineBullet : Bullet
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // TODO здесь получай компонент на который попадание аффектит
+
+        if (collision.gameObject.TryGetComponent<Entity>(out Entity entity))
+        {
+            entity.ChangeHp(_baseDmg * -1);
+            if (_effect  != null)
+                entity.AddEffect(_effect);
+        }
 
 
         if (collision.contactCount > 0)
