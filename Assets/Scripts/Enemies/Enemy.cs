@@ -30,6 +30,10 @@ public class Enemy : MonoBehaviour
 
     public Animator Animator => _animator;
 
+    public bool IsFreeze => _entity.IsFreeze;
+
+    
+
 
     public bool IsIdle => _entity.IsIdle;
 
@@ -56,13 +60,13 @@ public class Enemy : MonoBehaviour
             return;
         }
         _agent.speed = _entity.Speed;
-        CheckFreeze();
         Movement();
     }
 
 
     protected virtual void Dead()
     {
+
         if (_dropItem != null && _countDrop > 0)
             BulletDrop.Drop(_dropItem, _countDrop, _forceDrop, transform.position);
         _animator.Play("Dead");
@@ -81,7 +85,8 @@ public class Enemy : MonoBehaviour
 
     protected virtual void Movement()
     {
-        if (IsIdle)
+        Agent.SetDestination(transform.position);
+        if (IsIdle || IsFreeze)
             return;
         _agent.speed = _entity.Speed;
         _agent.SetDestination(_player.transform.position);
@@ -126,17 +131,16 @@ public class Enemy : MonoBehaviour
 
     }
 
-    protected void CheckFreeze()
-    {
-        if (_entity.IsFreeze)
-        {
-            _agent.SetDestination(transform.position);
-            return;
-        }
-    }
-
     protected virtual void SwapAnimation()
     {
+        if (IsFreeze)
+        {
+            Animator.speed = 0;
+        }
+        else
+        {
+            Animator.speed = 1;
+        }
         if (IsIdle)
         {
             _animator.Play("Idle");

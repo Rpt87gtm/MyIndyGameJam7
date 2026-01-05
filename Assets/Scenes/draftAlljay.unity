@@ -2502,7 +2502,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootRotationCooldown: 0.2
-  _bullets: 0000000000000000000000000000000000000000
+  _bullets: 0200000003000000
 --- !u!50 &1468225676
 Rigidbody2D:
   serializedVersion: 5

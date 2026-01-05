@@ -37,7 +37,7 @@ public class RangeEnemy : Enemy
     protected override void Movement()
     {
         Agent.SetDestination(transform.position);
-        if (IsIdle)
+        if (IsIdle || IsFreeze)
             return;
         if (_isShoot)
         {
@@ -60,7 +60,7 @@ public class RangeEnemy : Enemy
 
     protected void Shoot()
     {
-        if (IsIdle)
+        if (IsIdle || IsFreeze)
             return;
         _curShootTime -= Time.deltaTime;
         if (_curShootTime <= 0)
@@ -74,6 +74,14 @@ public class RangeEnemy : Enemy
 
     protected override void SwapAnimation()
     {
+        if (IsFreeze)
+        {
+            Animator.speed = 0;
+        }
+        else
+        {
+            Animator.speed = 1;
+        }    
         if (IsIdle)
         {
             Animator.Play("Idle");
