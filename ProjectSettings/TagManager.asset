@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PauseManager
   - MusicManager
+  - PlayerUI
   layers:
   - Default
   - TransparentFX

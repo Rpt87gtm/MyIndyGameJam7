@@ -32,6 +32,11 @@ public class Player : MonoBehaviour
     {
 
     }
+
+    public void SetBullets(List<BulletType> bullets)
+    {
+        _bullets = bullets;
+    }
     private void OnEnable()
     {
         inputActions.Enable();
@@ -73,8 +78,10 @@ public class Player : MonoBehaviour
             Debug.Log("I need more bullets");
             return;
         }
-        if (shooter.TryShoot(pos2d, _bullets))
+        var bullets = new List<BulletType>(_bullets);
+        if (shooter.TryShoot(pos2d, bullets))
         {
+            _bullets.Clear();
             if (flipCooldownCoroutine != null)
             {
                 StopCoroutine(flipCooldownCoroutine);
@@ -117,6 +124,6 @@ public class Player : MonoBehaviour
     public void Dead()
     {
         Destroy(gameObject);
-        Debug.Log("Вы умерли");
+        Debug.Log("пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ");
     }
 }

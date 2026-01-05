@@ -31,6 +31,7 @@ public class Pause : MonoBehaviour
         if (pauseRequestsIds.Contains(requestId))
         {
             pauseRequestsIds.Remove(existingId);
+            SwitchPause();
             return;
         }
 
@@ -57,6 +58,7 @@ public class Pause : MonoBehaviour
 
     private void SwitchPause()
     {
+        Debug.Log("switch");
         if (pauseRequestsIds.Count > 0)
         {
             Time.timeScale = 0;
