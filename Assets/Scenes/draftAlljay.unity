@@ -548,7 +548,7 @@ MonoBehaviour:
   _countDrop: 3
   _forceDrop: 5
   _deadTime: 1
-  _bullets: 0200000003000000
+  _bullets: 02000000
   _rangeHold: 4
   _shootTime: 1
   _wallTime: 2
