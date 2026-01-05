@@ -15,9 +15,12 @@ public class Entity : MonoBehaviour
     [SerializeField] private List<Effect> _effects = new List<Effect>();
 
     [SerializeField] private bool _isFreeze = false;
+    [SerializeField] private bool _isIdle = true;
 
     public IReadOnlyList<Effect> Effects => _effects;
     public bool IsFreeze => _isFreeze;
+    public bool IsIdle => _isIdle;
+
 
     public float Speed => _entityData.CurrentSpeed;
 
@@ -90,6 +93,11 @@ public class Entity : MonoBehaviour
     public bool IsAlive()
     {
         return _entityData.IsAlive();
+    }
+
+    public void SetIdle(bool isIdle)
+    {
+        _isIdle = isIdle;
     }
 
 
