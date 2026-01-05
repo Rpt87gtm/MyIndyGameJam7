@@ -51,7 +51,7 @@ MonoBehaviour:
   _duration: 5
   _curDuration: 0
   _damage: 25
-  _bigDamage: {fileID: 0}
+  _bigDamage: {fileID: 5100807702779747386, guid: 60aa488cc0bc4bb4c9d171007308aec2, type: 3}
 --- !u!212 &5261120836913478300
 SpriteRenderer:
   m_ObjectHideFlags: 0
