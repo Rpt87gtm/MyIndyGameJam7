@@ -72,7 +72,7 @@ public class Player : MonoBehaviour
             return;
         var pos = GetMouseWorldPosition();
         Vector2 pos2d = new(pos.x, pos.y);
-        TryFlip(pos2d);
+        FlipToPos(pos2d);
         if (_bullets.Count <= 0)
         {
             Debug.Log("I need more bullets");
@@ -86,7 +86,7 @@ public class Player : MonoBehaviour
             {
                 StopCoroutine(flipCooldownCoroutine);
             }
-            flipCooldownCoroutine = StartCoroutine(FlipCooldown(shootRotationCooldown * _bullets.Count));
+            flipCooldownCoroutine = StartCoroutine(FlipCooldown(shootRotationCooldown * bullets.Count));
         }
     }
 
@@ -101,6 +101,14 @@ public class Player : MonoBehaviour
         return Camera.main.ScreenToWorldPoint(
             new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane)
         );
+    }
+
+    private void FlipToPos(Vector2 pos)
+    {
+        if (pos.x > transform.position.x && _isFlipped || pos.x < transform.position.x && !_isFlipped)
+        {
+            Flip();
+        }
     }
 
     private bool TryFlip(Vector2 direction)
