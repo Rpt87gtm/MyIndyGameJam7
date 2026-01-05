@@ -27,6 +27,7 @@ public class LineBullet : Bullet
         if (collision.gameObject.TryGetComponent<Entity>(out Entity entity))
         {
             entity.ChangeHp(_baseDmg * -1);
+            entity.SetIdle(false);
             if (_effect  != null)
                 entity.AddEffect(_effect);
         }

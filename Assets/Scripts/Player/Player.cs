@@ -50,7 +50,10 @@ public class Player : MonoBehaviour
             return;
         }
         if (_entity.IsFreeze)
+        {
+            rb.MovePosition(transform.position);
             return;
+        }
 
         input = inputActions.Player.Move.ReadValue<Vector2>();
         if (!_isShootFliped) { TryFlip(input); }
