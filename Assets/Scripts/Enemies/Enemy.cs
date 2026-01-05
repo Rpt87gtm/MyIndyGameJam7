@@ -1,23 +1,38 @@
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
 
-[RequireComponent(typeof(Entity), typeof(NavMeshAgent), typeof(BoxCollider2D))]
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private float _agrRadius = 5;
     [SerializeField] GameObject _dropItem;
     [SerializeField] int _countDrop = 0;
     [SerializeField] float _forceDrop = 0.5f;
+    [SerializeField] float _deadTime = 1f;
+     Animator _animator;
     private NavMeshAgent _agent;
     private Entity _entity;
     private Player _player;
+    private bool _isDead = false;
 
+
+
+
+ 
     public float ArgRadius => _agrRadius;
     public NavMeshAgent Agent => _agent;
     public Entity CurEntity => _entity;
     public Player CurPlayer => _player;
+
+    public bool IsDead => _isDead;
+
+    public Animator Animator => _animator;
+
+    public bool IsFreeze => _entity.IsFreeze;
+
+    
 
 
     public bool IsIdle => _entity.IsIdle;
@@ -29,12 +44,14 @@ public class Enemy : MonoBehaviour
         _agent.updateRotation = false;
         _agent.updateUpAxis = false;
         _player = FindAnyObjectByType<Player>();
+        _animator = GetComponent<Animator>();
     }
 
 
 
     protected virtual void FixedUpdate()
     {
+        SwapAnimation();
         ChangeIdleBecausePlayer();
         ChangeIdleNearestEnemy();
         if (!_entity.IsAlive())
@@ -43,21 +60,33 @@ public class Enemy : MonoBehaviour
             return;
         }
         _agent.speed = _entity.Speed;
-        CheckFreeze();
         Movement();
     }
 
 
     protected virtual void Dead()
     {
+
         if (_dropItem != null && _countDrop > 0)
             BulletDrop.Drop(_dropItem, _countDrop, _forceDrop, transform.position);
-        Destroy(gameObject);
+        _animator.Play("Dead");
+        _isDead = true;
+        Component[] components = GetComponents<Component>();
+
+        foreach (Component component in components)
+        {
+            // Пропускаем Transform и SpriteRenderer
+            if (component is Transform || component is SpriteRenderer || component is Animator)
+                continue;
+            Destroy(component);
+        }
+        Destroy(gameObject, _deadTime);
     }
 
     protected virtual void Movement()
     {
-        if (IsIdle)
+        Agent.SetDestination(transform.position);
+        if (IsIdle || IsFreeze)
             return;
         _agent.speed = _entity.Speed;
         _agent.SetDestination(_player.transform.position);
@@ -102,12 +131,25 @@ public class Enemy : MonoBehaviour
 
     }
 
-    protected void CheckFreeze()
+    protected virtual void SwapAnimation()
     {
-        if (_entity.IsFreeze)
+        if (IsFreeze)
         {
-            _agent.SetDestination(transform.position);
-            return;
+            Animator.speed = 0;
         }
+        else
+        {
+            Animator.speed = 1;
+        }
+        if (IsIdle)
+        {
+            _animator.Play("Idle");
+        }
+        else
+        {
+            _animator.Play("Walk");
+        }
+
+
     }
 }
