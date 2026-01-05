@@ -262,6 +262,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: MasterVolume
       objectReference: {fileID: 0}
+    - target: {fileID: 952585471804385424, guid: cd3e37fdb6a4a7b47963eb7584ed5798, type: 3}
+      propertyPath: m_margin.z
+      value: -10.06366
+      objectReference: {fileID: 0}
+    - target: {fileID: 952585471804385424, guid: cd3e37fdb6a4a7b47963eb7584ed5798, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: e8c8ce3f096f4474099d9156571db75b, type: 2}
+    - target: {fileID: 952585471804385424, guid: cd3e37fdb6a4a7b47963eb7584ed5798, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 1519055041349901596, guid: e8c8ce3f096f4474099d9156571db75b, type: 2}
+    - target: {fileID: 952585471804385424, guid: cd3e37fdb6a4a7b47963eb7584ed5798, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3494224073045569211, guid: cd3e37fdb6a4a7b47963eb7584ed5798, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -490,6 +506,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2533279206218804006}
     m_Modifications:
+    - target: {fileID: 1246124402609542937, guid: 7610b7bb47b3a4141a0352a1bdf74589, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: e8c8ce3f096f4474099d9156571db75b, type: 2}
+    - target: {fileID: 1246124402609542937, guid: 7610b7bb47b3a4141a0352a1bdf74589, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 1519055041349901596, guid: e8c8ce3f096f4474099d9156571db75b, type: 2}
+    - target: {fileID: 1246124402609542937, guid: 7610b7bb47b3a4141a0352a1bdf74589, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1727337838585317696, guid: 7610b7bb47b3a4141a0352a1bdf74589, type: 3}
       propertyPath: m_Name
       value: MusicVolume
@@ -612,6 +640,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2533279206218804006}
     m_Modifications:
+    - target: {fileID: 602658982728277574, guid: bc86ade1f30b2ae488e79473911fc7c3, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: e8c8ce3f096f4474099d9156571db75b, type: 2}
+    - target: {fileID: 602658982728277574, guid: bc86ade1f30b2ae488e79473911fc7c3, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 1519055041349901596, guid: e8c8ce3f096f4474099d9156571db75b, type: 2}
+    - target: {fileID: 602658982728277574, guid: bc86ade1f30b2ae488e79473911fc7c3, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1075991083922702367, guid: bc86ade1f30b2ae488e79473911fc7c3, type: 3}
       propertyPath: m_Name
       value: EffectsVolume
