@@ -1,0 +1,31 @@
+fileFormatVersion: 2
+guid: e38b6b9e65e4a124b9e88bb226c88cfa
+AssetOrigin:
+  serializedVersion: 1
+  productId: 234735
+  packageName: Synthwave Atmosphere
+  packageVersion: 1.0
+  assetPath: Assets/Synthwave Atmosphere/Synthwave Atmos  Track 4/Synthwave Atmos
+    4 Loop.wav
+  uploadId: 531227
+AudioImporter:
+  externalObjects: {}
+  serializedVersion: 8
+  defaultSettings:
+    serializedVersion: 2
+    loadType: 0
+    sampleRateSetting: 0
+    sampleRateOverride: 44100
+    compressionFormat: 1
+    quality: 0.59
+    conversionMode: 0
+    preloadAudioData: 1
+  platformSettingOverrides: {}
+  forceToMono: 0
+  normalize: 1
+  loadInBackground: 0
+  ambisonic: 0
+  3D: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
