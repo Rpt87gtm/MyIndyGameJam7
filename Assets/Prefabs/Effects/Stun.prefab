@@ -48,7 +48,7 @@ MonoBehaviour:
   _type: 5
   _dropableEffects: 0400000001000000
   _color: {r: 0.070309706, g: 0.18867922, b: 0.15603104, a: 1}
-  _duration: 2
+  _duration: 1
   _curDuration: 0
 --- !u!212 &577050414227202751
 SpriteRenderer:
