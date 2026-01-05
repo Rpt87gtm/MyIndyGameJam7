@@ -7,6 +7,9 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private float _agrRadius = 5;
+    [SerializeField] GameObject _dropItem;
+    [SerializeField] int _countDrop = 0;
+    [SerializeField] float _forceDrop = 0.5f;
     private NavMeshAgent _agent;
     private Entity _entity;
     private Player _player;
@@ -47,6 +50,8 @@ public class Enemy : MonoBehaviour
 
     protected virtual void Dead()
     {
+        if (_dropItem != null && _countDrop > 0)
+            BulletDrop.Drop(_dropItem, _countDrop, _forceDrop, transform.position);
         Destroy(gameObject);
     }
 

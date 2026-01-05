@@ -153,6 +153,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _agrRadius: 6
+  _dropItem: {fileID: 0}
+  _countDrop: 0
+  _forceDrop: 0.5
   _baseDmg: 50
 --- !u!195 &56345148
 NavMeshAgent:
@@ -348,6 +351,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _agrRadius: 6
+  _dropItem: {fileID: 6593567341675108544, guid: b76d5d5bd0375e24fbe4135de9760e8c, type: 3}
+  _countDrop: 7
+  _forceDrop: 5
   _baseDmg: 50
 --- !u!195 &77998190
 NavMeshAgent:
@@ -430,7 +436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _entityData:
-    _maxHp: 10000
+    _maxHp: 10
     _defaultSpeed: 0
     _effectResists: 
     _curHp: 0
@@ -503,7 +509,7 @@ Transform:
   m_GameObject: {fileID: 77998188}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.8, y: -1.99, z: 0}
+  m_LocalPosition: {x: -7.8, y: -7.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -710,6 +716,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _agrRadius: 6
+  _dropItem: {fileID: 0}
+  _countDrop: 0
+  _forceDrop: 0.5
   _bullets: 0200000003000000
   _rangeHold: 4
   _shootTime: 2
@@ -1162,6 +1171,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _agrRadius: 6
+  _dropItem: {fileID: 0}
+  _countDrop: 0
+  _forceDrop: 0.5
   _baseDmg: 50
 --- !u!195 &293823523
 NavMeshAgent:
@@ -1951,6 +1963,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _agrRadius: 6
+  _dropItem: {fileID: 0}
+  _countDrop: 0
+  _forceDrop: 0.5
   _bullets: 00000000
   _rangeHold: 4
   _shootTime: 1
@@ -2802,6 +2817,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _agrRadius: 6
+  _dropItem: {fileID: 0}
+  _countDrop: 0
+  _forceDrop: 0.5
   _baseDmg: 50
 --- !u!195 &1357441237
 NavMeshAgent:
@@ -2975,6 +2993,7 @@ GameObject:
   - component: {fileID: 1468225677}
   - component: {fileID: 1468225676}
   - component: {fileID: 1468225675}
+  - component: {fileID: 1468225682}
   - component: {fileID: 1468225679}
   - component: {fileID: 1468225680}
   - component: {fileID: 1468225681}
@@ -3180,6 +3199,18 @@ MonoBehaviour:
   _effects: []
   _isFreeze: 0
   _isIdle: 0
+--- !u!114 &1468225682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1468225674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68d53e5154b40204aa22cf6e162becba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1491165236
 GameObject:
   m_ObjectHideFlags: 0
@@ -3365,6 +3396,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _agrRadius: 6
+  _dropItem: {fileID: 3489206489804602168, guid: 66daf9d07f2196a4e8da72960f7d7b95, type: 3}
+  _countDrop: 3
+  _forceDrop: 5
   _baseDmg: 50
 --- !u!195 &1690199673
 NavMeshAgent:
@@ -3447,7 +3481,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _entityData:
-    _maxHp: 10000
+    _maxHp: 10
     _defaultSpeed: 0
     _effectResists: 
     _curHp: 0
@@ -3520,7 +3554,7 @@ Transform:
   m_GameObject: {fileID: 1690199671}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.8, y: 2.12, z: 0}
+  m_LocalPosition: {x: -7.8, y: 0.71, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3576,6 +3610,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _agrRadius: 6
+  _dropItem: {fileID: 0}
+  _countDrop: 0
+  _forceDrop: 0.5
   _bullets: 00000000
   _rangeHold: 4
   _shootTime: 1
@@ -4300,6 +4337,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _agrRadius: 6
+  _dropItem: {fileID: 0}
+  _countDrop: 0
+  _forceDrop: 0.5
   _baseDmg: 50
 --- !u!195 &1988135185
 NavMeshAgent:
@@ -4508,6 +4548,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _agrRadius: 6
+  _dropItem: {fileID: 2963625137666523756, guid: 85a91a224b692a744abb2bdb29bd0eab, type: 3}
+  _countDrop: 5
+  _forceDrop: 5
   _baseDmg: 50
 --- !u!195 &2067686396
 NavMeshAgent:
@@ -4590,7 +4633,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _entityData:
-    _maxHp: 10000
+    _maxHp: 10
     _defaultSpeed: 0
     _effectResists: 
     _curHp: 0
@@ -4663,7 +4706,7 @@ Transform:
   m_GameObject: {fileID: 2067686394}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.8, y: 0.02, z: 0}
+  m_LocalPosition: {x: -7.8, y: -3.68, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
