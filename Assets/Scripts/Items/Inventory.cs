@@ -11,19 +11,35 @@ public class Inventory : MonoBehaviour
 
     private void Start()
     {
-        BulletType[] types = (BulletType[]) Enum.GetValues(typeof(BulletType));
+        BulletType[] types = (BulletType[])Enum.GetValues(typeof(BulletType));
         foreach (BulletType type in types)
         {
             _bullets[type] = 0;
         }
     }
 
+    public Dictionary<BulletType, int> GetBulletsCount()
+    {
+        return new(_bullets);
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.TryGetComponent<BulletItem>(out BulletItem bulletItem))
         {
             GrabBullet(bulletItem);
+        }
+    }
+
+    public void UseBullet(BulletType bullet)
+    {
+        if (bullet == BulletType.Normal)
+            return;
+        if (!_bullets.ContainsKey(bullet))
+            Debug.LogError("Use unlocked bullet");
+        else
+        {
+            _bullets[bullet]--;
         }
     }
 

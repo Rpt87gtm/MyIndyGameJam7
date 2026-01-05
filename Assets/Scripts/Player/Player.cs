@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using bullets;
+using Unity.Burst.Intrinsics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,6 +10,7 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     public float shootRotationCooldown = 1f;
+    private Reload reload;
 
     private InputSystem_Actions inputActions;
     private Vector2 input = new();
@@ -18,6 +20,7 @@ public class Player : MonoBehaviour
     private bool _isShootFliped = false;
     private Coroutine flipCooldownCoroutine;
     private Entity _entity;
+
     [SerializeField] private List<BulletType> _bullets;
 
     private void Awake()
@@ -26,6 +29,7 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         shooter = GetComponent<Shooter>();
         _entity = GetComponent<Entity>();
+        reload = GetComponent<Reload>();
     }
 
     private void Start()
@@ -35,7 +39,7 @@ public class Player : MonoBehaviour
 
     public void SetBullets(List<BulletType> bullets)
     {
-        _bullets = bullets;
+        _bullets.AddRange(bullets);
     }
     private void OnEnable()
     {
@@ -59,17 +63,27 @@ public class Player : MonoBehaviour
             rb.MovePosition(transform.position);
             return;
         }
-
-        input = inputActions.Player.Move.ReadValue<Vector2>();
+        if (reload.IsReloading)
+        {
+            input = Vector2.zero;
+        }
+        else
+        {
+            input = inputActions.Player.Move.ReadValue<Vector2>();
+        }
+        var newPosition = rb.position + input * _entity.Speed * Time.fixedDeltaTime;
         if (!_isShootFliped) { TryFlip(input); }
-        Vector2 newPosition = rb.position + input * _entity.Speed * Time.fixedDeltaTime;
         rb.MovePosition(newPosition);
     }
 
-    private void OnAttackPressed(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    private void OnAttackPressed(InputAction.CallbackContext context)
     {
         if (_entity.IsFreeze)
             return;
+        if (reload.IsReloading)
+        {
+            return;
+        }
         var pos = GetMouseWorldPosition();
         Vector2 pos2d = new(pos.x, pos.y);
         FlipToPos(pos2d);
@@ -81,6 +95,7 @@ public class Player : MonoBehaviour
         var bullets = new List<BulletType>(_bullets);
         if (shooter.TryShoot(pos2d, bullets))
         {
+            Debug.Log("clear bullets");
             _bullets.Clear();
             if (flipCooldownCoroutine != null)
             {

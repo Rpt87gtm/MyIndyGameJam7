@@ -13,6 +13,11 @@ public class Reload : MonoBehaviour
     private InputSystem_Actions inputAction;
     private bool isReloading = false;
 
+    public bool IsReloading
+    {
+        get { return isReloading; }
+    }
+
     void Awake()
     {
         inputAction = new();
@@ -20,25 +25,35 @@ public class Reload : MonoBehaviour
     void Start()
     {
         playerUI = GameObject.FindGameObjectWithTag("PlayerUI").GetComponent<PlayerUI>();
+        playerUI.Init(ReloadCallback);
     }
     void OnEnable()
     {
         inputAction.Enable();
-        inputAction.Player.Interact.performed += SwithReload;
+        inputAction.Player.Interact.performed += OnReloadPressed;
     }
 
     void OnDisable()
     {
-        inputAction.Player.Interact.performed -= SwithReload;
+        inputAction.Player.Interact.performed -= OnReloadPressed;
         inputAction.Disable();
     }
 
     void ReloadCallback(List<BulletType> bullets)
     {
         player.SetBullets(bullets);
+        foreach (var bulletType in bullets)
+        {
+            inventory.UseBullet(bulletType);
+        }
+        SwithReload();
+    }
+    private void OnReloadPressed(InputAction.CallbackContext context)
+    {
+        SwithReload();
     }
 
-    private void SwithReload(InputAction.CallbackContext context)
+    private void SwithReload()
     {
         if (isReloading)
         {
@@ -49,7 +64,7 @@ public class Reload : MonoBehaviour
         else
         {
             Debug.Log("start reload");
-            playerUI.StartReload(ReloadCallback);
+            playerUI.StartReload(inventory.GetBulletsCount());
             isReloading = true;
         }
     }

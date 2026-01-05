@@ -5,9 +5,9 @@ using UnityEngine;
 public class MoveUpDown : MonoBehaviour
 {
     public RectTransform target;
-    public Vector2 startPosition;
+    public float startPosition;
 
-    public Vector2 finalPosition;
+    public float finalPosition = -200;
     public float duration = 1f;
     private bool _isUp = true;
     private Coroutine move;
@@ -23,7 +23,9 @@ public class MoveUpDown : MonoBehaviour
         }
         if (forse)
         {
-            target.position = finalPosition;
+            var newpos = target.position;
+            newpos.y = startPosition;
+            target.position = newpos;
         }
         else
         {
@@ -42,7 +44,9 @@ public class MoveUpDown : MonoBehaviour
         }
         if (forse)
         {
-            target.position = finalPosition;
+            var newpos = target.position;
+            newpos.y = finalPosition;
+            target.position = newpos;
         }
         else
         {
@@ -55,21 +59,21 @@ public class MoveUpDown : MonoBehaviour
         float currentTime = 0;
         while (currentTime < duration)
         {
-            Vector2 newPos = new();
+            Vector2 newPos = target.position;
             if (isUpMove)
             {
-                newPos.x = Mathf.Lerp(startPosition.x, finalPosition.x, 1 - currentTime / duration);
-                newPos.y = Mathf.Lerp(startPosition.y, finalPosition.y, 1 - currentTime / duration);
+                newPos.y = Mathf.Lerp(startPosition, finalPosition, 1 - currentTime / duration);
             }
             else
             {
-                newPos.x = Mathf.Lerp(startPosition.x, finalPosition.x, currentTime / duration);
-                newPos.y = Mathf.Lerp(startPosition.y, finalPosition.y, currentTime / duration);
+                newPos.y = Mathf.Lerp(startPosition, finalPosition, currentTime / duration);
             }
             target.position = newPos;
             currentTime += Time.deltaTime;
             yield return null;
         }
-        target.position = isUpMove ? startPosition : finalPosition;
+        var newpos = target.position;
+        newpos.y = isUpMove ? startPosition : finalPosition;
+        target.position = newpos;
     }
 }
