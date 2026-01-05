@@ -6,21 +6,22 @@ public class GamePausePanel : MonoBehaviour
 {
     public Button exitButton;
     public GameObject panelGO;
+    public GameObject settingsMenu;
     private InputSystem_Actions _playerInput;
     private Pause pause;
     private int pauseId = 0;
     private bool isOpened = false;
 
+
     public void Open()
     {
         Debug.Log("open pause panel");
-        pause.RequestPause(pauseId);
         panelGO.SetActive(true);
     }
     public void Close()
     {
         Debug.Log("close pause panel");
-        pause.Unpause(pauseId);
+        settingsMenu.SetActive(false);
         panelGO.SetActive(false);
     }
     void Awake()
@@ -32,12 +33,14 @@ public class GamePausePanel : MonoBehaviour
     void OnEnable()
     {
         _playerInput.Enable();
+        pause.RequestPause(pauseId);
         _playerInput.UI.Menu.performed += OnEscPressed;
         exitButton.onClick.AddListener(SwitchState);
     }
 
     void OnDisable()
     {
+        pause.Unpause(pauseId);
         exitButton.onClick.RemoveListener(SwitchState);
         _playerInput.UI.Menu.performed -= OnEscPressed;
         _playerInput.Disable();
