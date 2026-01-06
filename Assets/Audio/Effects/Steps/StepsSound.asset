@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a57e77964745514419efed89399327f1, type: 3}
+  m_Name: StepsSound
+  m_EditorClassIdentifier: 
+  audioClips:
+  - {fileID: 8300000, guid: 7891ee87616b1d240b8d6b94de6c131d, type: 3}
+  - {fileID: 8300000, guid: 02e7c34b11bfac54098890f0bf92fda3, type: 3}
+  - {fileID: 8300000, guid: c331b2192301efa4b9eb30f560818590, type: 3}
+  minPitch: 0.9
+  maxPitch: 1.06

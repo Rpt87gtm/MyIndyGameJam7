@@ -26,6 +26,10 @@ public class Player : MonoBehaviour
     private Entity _entity;
     private PlayerUI playerUI;
     public SaveZone Spawner;
+    private AudioSource audioSource;
+    public RandomSoundList stepSounds;
+    public float steepColldown = 0.2f;
+    private Coroutine StepCoroutine;
 
     private void Awake()
     {
@@ -34,6 +38,7 @@ public class Player : MonoBehaviour
         shooter = GetComponent<Shooter>();
         _entity = GetComponent<Entity>();
         reload = GetComponent<Reload>();
+        audioSource = GetComponent<AudioSource>();
         shooter.OnShoot += OnShoot;
     }
 
@@ -81,6 +86,30 @@ public class Player : MonoBehaviour
         var newPosition = rb.position + input * _entity.Speed * Time.fixedDeltaTime;
         if (!_isShootFliped) { TryFlip(input); }
         rb.MovePosition(newPosition);
+        if (input.magnitude > 0.1f)
+        {
+            if (StepCoroutine == null)
+            {
+                StepCoroutine = StartCoroutine(StepSound(steepColldown));
+            }
+        }
+        else
+        {
+            if (StepCoroutine != null)
+            {
+                StopCoroutine(StepCoroutine);
+                StepCoroutine = null;
+            }
+        }
+    }
+
+    private IEnumerator StepSound(float cooldown)
+    {
+        while (true)
+        {
+            stepSounds.PlayRandomSound(audioSource);
+            yield return new WaitForSeconds(cooldown);
+        }
     }
 
     private void OnSuperAttackPressed(InputAction.CallbackContext context)
@@ -183,7 +212,7 @@ public class Player : MonoBehaviour
             Destroy(effect.gameObject);
         _entity.Effects.Clear();
         _entity.SetDefaultHp();
-        if (Spawner != null )
+        if (Spawner != null)
             Spawner.RespawnEnemies();
         Respawn();
     }
@@ -192,7 +221,7 @@ public class Player : MonoBehaviour
     {
         if (Spawner != null)
         {
-            transform.position = Spawner.transform.position;   
+            transform.position = Spawner.transform.position;
         }
     }
 }

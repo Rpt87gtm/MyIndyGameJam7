@@ -2674,6 +2674,8 @@ MonoBehaviour:
   shootRotationCooldown: 0.2
   oneShootCooldown: 1
   Spawner: {fileID: 0}
+  stepSounds: {fileID: 11400000, guid: 577b1bd8a28d86f41aeebf481b691d4a, type: 2}
+  steepColldown: 0.26
 --- !u!50 &1468225676
 Rigidbody2D:
   serializedVersion: 5
