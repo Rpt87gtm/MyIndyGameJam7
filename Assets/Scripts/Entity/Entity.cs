@@ -18,7 +18,7 @@ public class Entity : MonoBehaviour
     [SerializeField] private bool _isFreeze = false;
     [SerializeField] private bool _isIdle = true;
 
-    public IReadOnlyList<Effect> Effects => _effects;
+    public List<Effect> Effects => _effects;
     public bool IsFreeze => _isFreeze;
     public bool IsIdle => _isIdle;
 
