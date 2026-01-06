@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using bullets;
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,6 +14,32 @@ public class Reload : MonoBehaviour
     private InputSystem_Actions inputAction;
     private bool isReloading = false;
 
+    private List<BulletType> _bullets = new();
+
+    public List<BulletType> GetBullets()
+    {
+        return _bullets;
+    }
+
+    public int Count()
+    {
+        return _bullets.Count;
+    }
+
+    public void Clear()
+    {
+        _bullets.Clear();
+    }
+
+    public void AddBullets(List<BulletType> bullets)
+    {
+        _bullets.AddRange(bullets);
+    }
+
+    public void RemoveAt(int pos)
+    {
+        _bullets.RemoveAt(pos);
+    }
     public bool IsReloading
     {
         get { return isReloading; }
@@ -25,7 +52,7 @@ public class Reload : MonoBehaviour
     void Start()
     {
         playerUI = GameObject.FindGameObjectWithTag("PlayerUI").GetComponent<PlayerUI>();
-        playerUI.Init(ReloadCallback);
+        playerUI.Init(this);
     }
     void OnEnable()
     {
@@ -39,27 +66,36 @@ public class Reload : MonoBehaviour
         inputAction.Disable();
     }
 
-    void ReloadCallback(List<BulletType> bullets)
+    public void ReloadCallback(BulletType bullet)
     {
-        player.SetBullets(bullets);
-        foreach (var bulletType in bullets)
-        {
-            inventory.UseBullet(bulletType);
-        }
-        SwithReload();
+        _bullets.Add(bullet);
+        inventory.UseBullet(bullet);
+        if (_bullets.Count < 6) return;
+        StopReload();
+    }
+    private void StopReload()
+    {
+        playerUI.StopReload();
+        Debug.Log("stop reload");
+        isReloading = false;
     }
     private void OnReloadPressed(InputAction.CallbackContext context)
     {
-        SwithReload();
+        if (_bullets.Count < 6)
+        {
+            SwithReload();
+        }
+        else
+        {
+            Debug.Log("No need reload");
+        }
     }
 
     private void SwithReload()
     {
         if (isReloading)
         {
-            Debug.Log("stop reload");
-            playerUI.StopReload();
-            isReloading = false;
+            StopReload();
         }
         else
         {

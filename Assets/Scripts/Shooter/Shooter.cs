@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using bullets;
 using UnityEngine;
@@ -7,11 +8,16 @@ public class Shooter : MonoBehaviour
     public BulletsList bulletsList;
     public Transform spawnPosition;
 
-    public float shootCooldown = 0.2f;
     private Collider2D shooterCollider;
 
     private Coroutine shootCoro;
+    public Action<BulletType> OnShoot;
 
+    private bool isShooting = false;
+    public bool IsShooting
+    {
+        get => isShooting;
+    }
 
     void Start()
     {
@@ -42,7 +48,7 @@ public class Shooter : MonoBehaviour
         bulletComponent.Shoot(direction);
     }
 
-    public bool TryShoot(Vector2 target, List<BulletType> bulletTypes)
+    public bool TryShoot(Vector2 target, List<BulletType> bulletTypes, float cooldown)
     {
         if (shootCoro != null)
         {
@@ -51,16 +57,18 @@ public class Shooter : MonoBehaviour
         }
         Vector2 position2D = new Vector2(spawnPosition.position.x, spawnPosition.position.y);
         var moveDirection = (target - position2D).normalized;
-        shootCoro = StartCoroutine(ShootBullets(moveDirection, bulletTypes));
+        shootCoro = StartCoroutine(ShootBullets(moveDirection, bulletTypes, cooldown));
         return true;
     }
 
-    private System.Collections.IEnumerator ShootBullets(Vector2 direction, List<BulletType> bulletTypes)
+    private System.Collections.IEnumerator ShootBullets(Vector2 direction, List<BulletType> bulletTypes, float cooldown)
     {
+        isShooting = true;
         foreach (var type in bulletTypes)
         {
             ShootBullet(direction, type);
-            yield return new WaitForSeconds(shootCooldown);
+            OnShoot?.Invoke(type);
+            yield return new WaitForSeconds(cooldown);
         }
         StopShooting();
     }
@@ -71,5 +79,6 @@ public class Shooter : MonoBehaviour
             StopCoroutine(shootCoro);
             shootCoro = null;
         }
+        isShooting = false;
     }
 }

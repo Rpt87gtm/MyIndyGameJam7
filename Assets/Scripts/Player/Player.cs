@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using bullets;
 using Unity.Burst.Intrinsics;
 using Unity.VisualScripting;
@@ -10,6 +12,7 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     public float shootRotationCooldown = 1f;
+    public float oneShootCooldown = 1f;
     private Reload reload;
 
     private InputSystem_Actions inputActions;
@@ -20,8 +23,7 @@ public class Player : MonoBehaviour
     private bool _isShootFliped = false;
     private Coroutine flipCooldownCoroutine;
     private Entity _entity;
-
-    [SerializeField] private List<BulletType> _bullets;
+    private PlayerUI playerUI;
 
     private void Awake()
     {
@@ -30,24 +32,26 @@ public class Player : MonoBehaviour
         shooter = GetComponent<Shooter>();
         _entity = GetComponent<Entity>();
         reload = GetComponent<Reload>();
+        shooter.OnShoot += OnShoot;
     }
 
     private void Start()
     {
-
+        playerUI = GameObject.FindGameObjectWithTag("PlayerUI").GetComponent<PlayerUI>();
     }
-
-    public void SetBullets(List<BulletType> bullets)
+    private void OnShoot(BulletType type)
     {
-        _bullets.AddRange(bullets);
+        playerUI.OnShoot(type);
     }
     private void OnEnable()
     {
         inputActions.Enable();
+        inputActions.Player.Attack2.performed += OnSuperAttackPressed;
         inputActions.Player.Attack.performed += OnAttackPressed;
     }
     private void OnDisable()
     {
+        inputActions.Player.Attack2.performed -= OnSuperAttackPressed;
         inputActions.Player.Attack.performed -= OnAttackPressed;
         inputActions.Disable();
     }
@@ -76,32 +80,57 @@ public class Player : MonoBehaviour
         rb.MovePosition(newPosition);
     }
 
-    private void OnAttackPressed(InputAction.CallbackContext context)
+    private void OnSuperAttackPressed(InputAction.CallbackContext context)
     {
-        if (_entity.IsFreeze)
+        if (_entity.IsFreeze || reload.IsReloading || shooter.IsShooting)
             return;
-        if (reload.IsReloading)
-        {
-            return;
-        }
         var pos = GetMouseWorldPosition();
         Vector2 pos2d = new(pos.x, pos.y);
         FlipToPos(pos2d);
-        if (_bullets.Count <= 0)
+        if (reload.Count() <= 0)
         {
             Debug.Log("I need more bullets");
             return;
         }
-        var bullets = new List<BulletType>(_bullets);
-        if (shooter.TryShoot(pos2d, bullets))
+        var bullets = new List<BulletType>(reload.GetBullets());
+        if (shooter.TryShoot(pos2d, bullets, shootRotationCooldown))
         {
             Debug.Log("clear bullets");
-            _bullets.Clear();
+            reload.Clear();
             if (flipCooldownCoroutine != null)
             {
                 StopCoroutine(flipCooldownCoroutine);
             }
             flipCooldownCoroutine = StartCoroutine(FlipCooldown(shootRotationCooldown * bullets.Count));
+        }
+    }
+
+    private void OnAttackPressed(InputAction.CallbackContext context)
+    {
+        if (_entity.IsFreeze || reload.IsReloading || shooter.IsShooting)
+            return;
+
+        var pos = GetMouseWorldPosition();
+        Vector2 pos2d = new(pos.x, pos.y);
+        FlipToPos(pos2d);
+        if (reload.Count() <= 0)
+        {
+            Debug.Log("I need more bullets");
+            return;
+        }
+        var firstBullet = reload.GetBullets().First();
+        var bullets = new List<BulletType> { firstBullet };
+
+        if (shooter.TryShoot(pos2d, bullets, oneShootCooldown))
+        {
+            Debug.Log("clear bullet");
+            reload.RemoveAt(0);
+
+            if (flipCooldownCoroutine != null)
+            {
+                StopCoroutine(flipCooldownCoroutine);
+            }
+            flipCooldownCoroutine = StartCoroutine(FlipCooldown(oneShootCooldown));
         }
     }
 

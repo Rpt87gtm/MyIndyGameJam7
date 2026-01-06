@@ -8,7 +8,8 @@ public class PlayerUI : MonoBehaviour
 {
     public MoveUpDown BarabanUpper;
     public BulletsUI bulletsUI;
-    private Action<List<BulletType>> _callback;
+    public Baraban baraban;
+    private Reload _reload;
     private List<BulletType> chosenBullet = new();
     private Dictionary<BulletType, int> currentBullets;
 
@@ -16,36 +17,35 @@ public class PlayerUI : MonoBehaviour
     {
         BarabanUpper.MoveDown(true);
     }
-    public void Init(Action<List<BulletType>> callback)
+    public void Init(Reload reload)
     {
-        _callback = callback;
+        _reload = reload;
     }
 
     public void StartReload(Dictionary<BulletType, int> bullets)
     {
+        Debug.Log("Start Reload");
+        chosenBullet.Clear();
         BarabanUpper.MoveUp();
         currentBullets = bullets;
         bulletsUI.ShowBullets(bullets, BulletChosen);
     }
-
+    public void OnShoot(BulletType bulletType)
+    {
+        baraban.RemoveBullet();
+    }
     public void BulletChosen(BulletType bulletType)
     {
         chosenBullet.Add(bulletType);
-        if (chosenBullet.Count > 5)
-        {
-            Debug.Log("ammo full");
-            _callback(chosenBullet);
-            return;
-        }
+        baraban.AddBullet(bulletType);
         currentBullets[bulletType]--;
         bulletsUI.ShowBullets(currentBullets, BulletChosen);
+        _reload.ReloadCallback(bulletType);
     }
 
     public void StopReload()
     {
         BarabanUpper.MoveDown();
         bulletsUI.hideBullets();
-        List<BulletType> bullets = new() { BulletType.Electric, BulletType.Normal };
-        chosenBullet.Clear();
     }
 }

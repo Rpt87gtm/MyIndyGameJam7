@@ -9,16 +9,18 @@ public class RangeEnemy : Enemy
 {
 
 
-    [SerializeField ]private List<BulletType> _bullets;
+    [SerializeField] private List<BulletType> _bullets;
     [SerializeField] private float _rangeHold;
     [SerializeField] private float _shootTime = 0;
-    [SerializeField] private  float _wallTime = 0;
+    [SerializeField] private float _wallTime = 0;
+
+    [SerializeField] private float shootCooldown = 0.2f;
     private Shooter _shooter;
     private float _curShootTime = 0;
     private float _curWallTime = 0;
     private bool _isShoot;
-    public float fleeDistance = 5f; // Дистанция, на которую нужно убежать
-    public float safeDistance = 10f; // Минимальная дистанция безопасности
+    public float fleeDistance = 5f; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    public float safeDistance = 10f; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
     public List<BulletType> Bullets => _bullets;
 
@@ -65,9 +67,9 @@ public class RangeEnemy : Enemy
         _curShootTime -= Time.deltaTime;
         if (_curShootTime <= 0)
         {
-            _shooter.TryShoot(CurPlayer.transform.position, _bullets);
+            _shooter.TryShoot(CurPlayer.transform.position, _bullets, shootCooldown);
             _curShootTime = _shootTime;
-            _isShoot=false;
+            _isShoot = false;
             _curWallTime = _wallTime;
         }
     }
@@ -81,12 +83,12 @@ public class RangeEnemy : Enemy
         else
         {
             Animator.speed = 1;
-        }    
+        }
         if (IsIdle)
         {
             Animator.Play("Idle");
         }
-        else if(_isShoot)
+        else if (_isShoot)
         {
             Animator.Play("Shoot");
         }
@@ -101,16 +103,16 @@ public class RangeEnemy : Enemy
         Vector3 toPlayer = CurPlayer.transform.position - transform.position;
         float distanceToPlayer = toPlayer.magnitude;
 
-        // Если игрок слишком близко - убегаем
+        // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         if (distanceToPlayer < safeDistance)
         {
-            // Направление бегства (противоположно игроку)
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ)
             Vector3 fleeDirection = -toPlayer.normalized;
 
-            // Позиция для бегства
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             Vector3 fleeTarget = transform.position + fleeDirection * fleeDistance;
 
-            // Устанавливаем цель
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
             Agent.SetDestination(fleeTarget);
         }
     }
