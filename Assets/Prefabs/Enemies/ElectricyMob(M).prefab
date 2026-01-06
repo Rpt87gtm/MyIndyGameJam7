@@ -198,7 +198,7 @@ MonoBehaviour:
   _dropItem: {fileID: 5971211116915528072, guid: 04e800065da1b474aa2cde8ef41dc479, type: 3}
   _countDrop: 7
   _forceDrop: 5
-  _deadTime: 1.5
+  _deadTime: 1
   _baseDmg: 20
   _effect: {fileID: 7459466881339965598, guid: 68c85762fb5a219489888cd4e6271a39, type: 3}
 --- !u!95 &5165808889368490486

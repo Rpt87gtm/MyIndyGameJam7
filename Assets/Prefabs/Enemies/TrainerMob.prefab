@@ -130,7 +130,7 @@ MonoBehaviour:
   _dropItem: {fileID: 3489206489804602168, guid: 66daf9d07f2196a4e8da72960f7d7b95, type: 3}
   _countDrop: 6
   _forceDrop: 5
-  _deadTime: 1.5
+  _deadTime: 1
 --- !u!61 &5000712433183013309
 BoxCollider2D:
   m_ObjectHideFlags: 0
