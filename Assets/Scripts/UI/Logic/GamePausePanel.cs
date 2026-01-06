@@ -44,6 +44,7 @@ public class GamePausePanel : MonoBehaviour
         exitButton.onClick.RemoveListener(SwitchState);
         _playerInput.UI.Menu.performed -= OnEscPressed;
         _playerInput.Disable();
+        Close();
     }
 
     private void OnEscPressed(UnityEngine.InputSystem.InputAction.CallbackContext context)
