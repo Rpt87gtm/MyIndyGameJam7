@@ -199,6 +199,7 @@ MonoBehaviour:
   _countDrop: 7
   _forceDrop: 5
   _deadTime: 1
+  _enemyHpBar: {fileID: 3196635731216826762, guid: 4c6ae2fafef42fc4abcf98995be70244, type: 3}
   _baseDmg: 20
   _effect: {fileID: 7459466881339965598, guid: 68c85762fb5a219489888cd4e6271a39, type: 3}
 --- !u!95 &5165808889368490486

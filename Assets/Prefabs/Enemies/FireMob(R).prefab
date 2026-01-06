@@ -200,6 +200,7 @@ MonoBehaviour:
   _countDrop: 3
   _forceDrop: 5
   _deadTime: 1
+  _enemyHpBar: {fileID: 3196635731216826762, guid: 4c6ae2fafef42fc4abcf98995be70244, type: 3}
   _bullets: 01000000
   _rangeHold: 4
   _shootTime: 1

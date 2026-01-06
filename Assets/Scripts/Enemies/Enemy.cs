@@ -2,15 +2,17 @@ using System.Collections;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private float _agrRadius = 5;
-    [SerializeField] GameObject _dropItem;
-    [SerializeField] int _countDrop = 0;
-    [SerializeField] float _forceDrop = 0.5f;
-    [SerializeField] float _deadTime = 1f;
+    [SerializeField] private GameObject _dropItem;
+    [SerializeField] private int _countDrop = 0;
+    [SerializeField] private float _forceDrop = 0.5f;
+    [SerializeField] private float _deadTime = 1f;
+    [SerializeField] private EnemyHpBar _enemyHpBar;
      Animator _animator;
     private NavMeshAgent _agent;
     private Entity _entity;
@@ -45,6 +47,10 @@ public class Enemy : MonoBehaviour
         _agent.updateUpAxis = false;
         _player = FindAnyObjectByType<Player>();
         _animator = GetComponent<Animator>();
+        GameObject enemyHpCanvas = FindFirstObjectByType<HpBarCanvas>().gameObject;
+        GameObject hpBar = GameObject.Instantiate(_enemyHpBar.gameObject, transform.position, Quaternion.identity);
+        hpBar.GetComponent<EnemyHpBar>().CurEntity = _entity;
+        hpBar.transform.SetParent(enemyHpCanvas.transform, true);
     }
 
 
