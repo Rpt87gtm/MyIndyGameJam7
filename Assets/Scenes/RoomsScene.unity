@@ -50867,6 +50867,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameplayCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 6034796138413826553, guid: af5eb953bcd82484f8b949c4a64e89c9, type: 3}
+      propertyPath: Bar
+      value: 
+      objectReference: {fileID: 1454300555830370363}
     - target: {fileID: 8664092319038117219, guid: af5eb953bcd82484f8b949c4a64e89c9, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -52853,6 +52857,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2791387171930214578, guid: 6d249724e5f3a614ba6607266b7158bf, type: 3}
   m_PrefabInstance: {fileID: 7883075606205878229}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1454300555830370363 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5711943190224507211, guid: 6d249724e5f3a614ba6607266b7158bf, type: 3}
+  m_PrefabInstance: {fileID: 7883075606205878229}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31f3e32ee31077841b9ff67be6d48cb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7883075606205878229
 PrefabInstance:
   m_ObjectHideFlags: 0

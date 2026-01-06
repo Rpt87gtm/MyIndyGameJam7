@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ElectircSound
   m_EditorClassIdentifier: 
   audioClips:
-  - {fileID: 8300000, guid: a245ee5d75348c84a89ffb7992f1dc82, type: 3}
-  - {fileID: 8300000, guid: ab297b593498a6e47ba84de770477cbe, type: 3}
+  - {fileID: 8300000, guid: 8ace8cdf63aecf942b072c0ee914ed64, type: 3}
+  - {fileID: 8300000, guid: b8cf167178a1a41498067b44c7be954f, type: 3}
   minPitch: 0.9
   maxPitch: 1.1

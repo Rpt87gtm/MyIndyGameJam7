@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: PechkaShoot
   m_EditorClassIdentifier: 
   audioClips:
-  - {fileID: 8300000, guid: af66162561d2eed40ad49268cab318bb, type: 3}
+  - {fileID: 8300000, guid: d82a4f0864e446545935a7be6b75d940, type: 3}
   minPitch: 0.9
   maxPitch: 1.1
