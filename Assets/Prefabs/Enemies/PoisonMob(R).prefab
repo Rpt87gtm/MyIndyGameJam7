@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _entityData:
-    _maxHp: 100
+    _maxHp: 70
     _defaultSpeed: 3
     _effectResists: 03000000
     _curHp: 0

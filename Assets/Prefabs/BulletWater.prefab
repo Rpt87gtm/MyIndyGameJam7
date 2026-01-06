@@ -131,7 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifeTime: 5
   _effect: {fileID: 7319090102748112577, guid: bce807399c87920458b7d71459e0484f, type: 3}
-  _baseDmg: 5
+  _baseDmg: 12
   speed: 19.9
   destroyParticle: {fileID: 4284219239346661964, guid: f5cc8d9be609dca4b8e24b7f2ff8d024, type: 3}
 --- !u!58 &7202807925382983909
