@@ -9,4 +9,9 @@ public class EnemySpawner : MonoBehaviour
         GameObject enemy = GameObject.Instantiate(_enemy, transform.position, Quaternion.identity);
         return enemy;
     }
+
+    private void Start()
+    {
+        gameObject.GetComponent<SpriteRenderer>().enabled = false; 
+    }
 }

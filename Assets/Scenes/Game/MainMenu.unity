@@ -2025,7 +2025,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b104eeadb06bd6049a64c3390b7623ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: StartScene
+  sceneName: RoomsScene
 --- !u!114 &7502775972076196463
 MonoBehaviour:
   m_ObjectHideFlags: 0
