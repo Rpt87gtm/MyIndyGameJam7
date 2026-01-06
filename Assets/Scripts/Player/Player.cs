@@ -12,6 +12,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody2D), typeof(Shooter), typeof(Entity))]
 public class Player : MonoBehaviour
 {
+
     public float shootRotationCooldown = 1f;
     public float oneShootCooldown = 1f;
     private Reload reload;
@@ -26,10 +27,21 @@ public class Player : MonoBehaviour
     private Entity _entity;
     private PlayerUI playerUI;
     public SaveZone Spawner;
+    private Animator _animator;
+
+    public bool IsFreeze => _entity.IsFreeze;
+
+    [SerializeField] float _speedIsIdle = 0.05f;
+    private bool _isWalk = false;
+    private bool _isShoot = false;
+
+
     private AudioSource audioSource;
     public RandomSoundList stepSounds;
     public float steepColldown = 0.2f;
     private Coroutine StepCoroutine;
+
+    public bool IsIdle => _entity.IsIdle;
 
     private void Awake()
     {
@@ -40,6 +52,7 @@ public class Player : MonoBehaviour
         reload = GetComponent<Reload>();
         audioSource = GetComponent<AudioSource>();
         shooter.OnShoot += OnShoot;
+        _animator = GetComponent<Animator>();
     }
 
     private void Start()
@@ -83,6 +96,14 @@ public class Player : MonoBehaviour
         {
             input = inputActions.Player.Move.ReadValue<Vector2>();
         }
+
+        if (Mathf.Abs(input.magnitude) > _speedIsIdle)
+        {
+            _isWalk = true;
+        }
+        else
+            _isWalk = false;
+
         var newPosition = rb.position + input * _entity.Speed * Time.fixedDeltaTime;
         if (!_isShootFliped) { TryFlip(input); }
         rb.MovePosition(newPosition);
@@ -101,6 +122,7 @@ public class Player : MonoBehaviour
                 StepCoroutine = null;
             }
         }
+        SwapAnimation();
     }
 
     private IEnumerator StepSound(float cooldown)
@@ -222,6 +244,31 @@ public class Player : MonoBehaviour
         if (Spawner != null)
         {
             transform.position = Spawner.transform.position;
+        }
+    }
+
+    protected void SwapAnimation()
+    {
+        if (IsFreeze)
+        {
+            _animator.speed = 0;
+        }
+        else
+        {
+            _animator.speed = 1;
+        }
+
+        if (_isShoot)
+        {
+            _animator.Play("Shoot");
+        }
+        else if (_isWalk)
+        {
+            _animator.Play("Walk");
+        }
+        else
+        {
+            _animator.Play("Idle");
         }
     }
 }
