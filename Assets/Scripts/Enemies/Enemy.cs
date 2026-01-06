@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Linq;
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -77,6 +78,9 @@ public class Enemy : MonoBehaviour
             BulletDrop.Drop(_dropItem, _countDrop, _forceDrop, transform.position);
         _animator.Play("Dead");
         _isDead = true;
+        Effect[] effects  = GetComponentsInChildren<Effect>();
+        foreach (Effect effect in effects)
+            Destroy(effect.gameObject);
         Component[] components = GetComponents<Component>();
         foreach (Component component in components)
         {

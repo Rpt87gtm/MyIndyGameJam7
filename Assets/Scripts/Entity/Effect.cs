@@ -8,7 +8,6 @@ public class Effect: MonoBehaviour
     
     [SerializeField] private TypeEffect _type;
     [SerializeField] private List<TypeEffect> _dropableEffects = new List<TypeEffect>();
-    [SerializeField] private Color _color;
     [Range(0.1f, 10f)]
     [SerializeField] private float _duration;
     public TypeEffect Type => _type;
@@ -23,7 +22,6 @@ public class Effect: MonoBehaviour
     public void Tick(Entity entity)
     {
         ReduceDuration(entity);
-        ChangeColor(entity);
         UseEffect(entity);
     }
 
@@ -65,10 +63,6 @@ public class Effect: MonoBehaviour
     {
     }
 
-    private void ChangeColor(Entity entity)
-    {
-        entity.GetComponent<SpriteRenderer>().color = _color;
-    }
 
 
 
