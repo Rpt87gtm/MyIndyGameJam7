@@ -78,7 +78,6 @@ public class Enemy : MonoBehaviour
         _animator.Play("Dead");
         _isDead = true;
         Component[] components = GetComponents<Component>();
-
         foreach (Component component in components)
         {
             // Пропускаем Transform и SpriteRenderer

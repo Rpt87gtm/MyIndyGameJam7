@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6727a617707a3fc42bb4dc698ecab6ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _agrRadius: 6
+  _agrRadius: 8
   _dropItem: {fileID: 6593567341675108544, guid: b76d5d5bd0375e24fbe4135de9760e8c, type: 3}
   _countDrop: 3
   _forceDrop: 5
@@ -205,8 +205,10 @@ MonoBehaviour:
   _rangeHold: 4
   _shootTime: 1
   _wallTime: 2
-  fleeDistance: 7
-  safeDistance: 10
+  shootCooldown: 0.2
+  fleeDistance: 6
+  safeDistance: 9
+  approachDistance: 12
 --- !u!114 &2526295406947848445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,7 +223,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletsList: {fileID: 11400000, guid: 7d7be726a92bf74418c84b85d71f9675, type: 2}
   spawnPosition: {fileID: 4713103410607407825}
-  shootCooldown: 0.2
 --- !u!95 &7351686942025981424
 Animator:
   serializedVersion: 7

@@ -21,6 +21,7 @@ public class RangeEnemy : Enemy
     private bool _isShoot;
     public float fleeDistance = 5f; // ���������, �� ������� ����� �������
     public float safeDistance = 10f; // ����������� ��������� ������������
+    public float approachDistance = 15f; // Дистанция, на которой начинаем приближаться
 
     public List<BulletType> Bullets => _bullets;
 
@@ -103,17 +104,29 @@ public class RangeEnemy : Enemy
         Vector3 toPlayer = CurPlayer.transform.position - transform.position;
         float distanceToPlayer = toPlayer.magnitude;
 
-        // ���� ����� ������� ������ - �������
+        // Если дистанция маленькая - убегаем от игрока
         if (distanceToPlayer < safeDistance)
         {
-            // ����������� ������� (�������������� ������)
+            // Вычисляем направление побега (противоположное игроку)
             Vector3 fleeDirection = -toPlayer.normalized;
 
-            // ������� ��� �������
+            // Рассчитываем точку побега
             Vector3 fleeTarget = transform.position + fleeDirection * fleeDistance;
 
-            // ������������� ����
+            // Устанавливаем точку назначения
             Agent.SetDestination(fleeTarget);
+        }
+        // Если дистанция большая - приближаемся к игроку
+        else if (distanceToPlayer > approachDistance)
+        {
+            // Двигаемся прямо к игроку
+            Agent.SetDestination(CurPlayer.transform.position);
+        }
+        // Если дистанция средняя - остаемся на месте или прекращаем движение
+        else
+        {
+            Agent.ResetPath(); // Останавливаем движение
+                               // Или можно установить Agent.isStopped = true;
         }
     }
 
