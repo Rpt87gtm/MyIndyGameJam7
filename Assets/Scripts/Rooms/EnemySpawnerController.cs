@@ -6,6 +6,7 @@ public class EnemySpawnerController : MonoBehaviour
 {
     [SerializeField] private List<GameObject> _enemies;
     [SerializeField] private Door _door;
+    [SerializeField] private Door _door2;
     
     
 
@@ -24,6 +25,11 @@ public class EnemySpawnerController : MonoBehaviour
         {
             Debug.Log("Open");
             _door.OpenDoor();
+        }
+        if (_door2 != null && _enemies.All(en => en == null) && !_door2.IsOpen)
+        {
+            Debug.Log("Open");
+            _door2.OpenDoor();
         }
     }
 
