@@ -43,17 +43,4 @@ public class EntitySupport : MonoBehaviour
     {
         target.AddEffect(_frozen);
     }
-
-    [ContextMenu(nameof(ReloadBullet))]
-    public void ReloadBullet()
-    {
-        Player player = FindFirstObjectByType<Player>();
-        var bullets = new List<BulletType>();
-        for (int i = 0; i < 6; i++)
-        {
-            bullets.Add(BulletType.Normal);
-        }
-
-        player.SetBullets(bullets);
-    }
 }
