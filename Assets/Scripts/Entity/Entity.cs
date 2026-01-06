@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -27,6 +28,7 @@ public class Entity : MonoBehaviour
     private Color _defaultColor;
     private SpriteRenderer _spriteRenderer;
 
+    public event Action<int> HpChanged;
   
 
 
@@ -77,6 +79,7 @@ public class Entity : MonoBehaviour
     public void ChangeHp(int hp)
     {
         _entityData.ChangeHp(hp);
+        HpChanged.Invoke(GetCurHp());
     }
 
     public void InitEntity()
@@ -100,6 +103,15 @@ public class Entity : MonoBehaviour
         _isIdle = isIdle;
     }
 
+    public int GetCurHp()
+    {
+        return _entityData.CurHp;
+    }
+
+    public int GetMaxHp()
+    {
+        return _entityData.MaxHp;
+    }
 
 
 

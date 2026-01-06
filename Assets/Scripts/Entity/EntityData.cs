@@ -23,7 +23,7 @@ public class EntityData
 
     public float CurrentSpeed => _curSpeed;
 
-    public float CurHp => _curHp;
+    public int CurHp => _curHp;
 
     public List<TypeEffect> EffectResists => _effectResists;
 
