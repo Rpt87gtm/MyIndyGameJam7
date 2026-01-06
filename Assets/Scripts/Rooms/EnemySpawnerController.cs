@@ -1,9 +1,13 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class EnemySpawnerController : MonoBehaviour
 {
     [SerializeField] private List<GameObject> _enemies;
+    [SerializeField] private Door _door;
+    
+    
 
     public void SpawnEnemies()
     {
@@ -14,6 +18,14 @@ public class EnemySpawnerController : MonoBehaviour
         }
     }
 
+    public void FixedUpdate()
+    {
+        if (_door != null && _enemies.All(en => en == null) && !_door.IsOpen)
+        {
+            Debug.Log("Open");
+            _door.OpenDoor();
+        }
+    }
 
     [ContextMenu(nameof(RespawnEnemies))]
     public void RespawnEnemies()
