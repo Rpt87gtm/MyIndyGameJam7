@@ -2673,6 +2673,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootRotationCooldown: 0.2
   oneShootCooldown: 1
+  Spawner: {fileID: 0}
 --- !u!50 &1468225676
 Rigidbody2D:
   serializedVersion: 5
@@ -2880,6 +2881,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventory: {fileID: 1468225682}
   player: {fileID: 1468225675}
+  reloadSounds: {fileID: 11400000, guid: b1fc5b429f76ccd4bbd69b82a43e40ce, type: 2}
 --- !u!82 &1468225684
 AudioSource:
   m_ObjectHideFlags: 0

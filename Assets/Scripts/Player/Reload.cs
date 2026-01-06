@@ -15,6 +15,8 @@ public class Reload : MonoBehaviour
     private bool isReloading = false;
 
     private List<BulletType> _bullets = new();
+    private AudioSource audioSource;
+    public RandomSoundList reloadSounds;
 
     public List<BulletType> GetBullets()
     {
@@ -47,6 +49,7 @@ public class Reload : MonoBehaviour
 
     void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         inputAction = new();
     }
     void Start()
@@ -70,6 +73,7 @@ public class Reload : MonoBehaviour
     {
         _bullets.Add(bullet);
         inventory.UseBullet(bullet);
+        reloadSounds.PlayRandomSound(audioSource);
         if (_bullets.Count < 6) return;
         StopReload();
     }
