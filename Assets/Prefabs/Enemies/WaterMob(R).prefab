@@ -198,7 +198,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _agrRadius: 8
   _dropItem: {fileID: 6593567341675108544, guid: b76d5d5bd0375e24fbe4135de9760e8c, type: 3}
-  _countDrop: 3
+  _countDrop: 6
   _forceDrop: 5
   _deadTime: 1
   _enemyHpBar: {fileID: 3196635731216826762, guid: 4c6ae2fafef42fc4abcf98995be70244, type: 3}
