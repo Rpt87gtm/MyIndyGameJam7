@@ -7,6 +7,8 @@ public class Shooter : MonoBehaviour
 {
     public BulletsList bulletsList;
     public Transform spawnPosition;
+    private AudioSource audioSource;
+    public RandomSoundList shootSoundList;
 
     private Collider2D shooterCollider;
 
@@ -19,6 +21,10 @@ public class Shooter : MonoBehaviour
         get => isShooting;
     }
 
+    void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
     void Start()
     {
         shooterCollider = GetComponent<Collider2D>();
@@ -68,6 +74,10 @@ public class Shooter : MonoBehaviour
         {
             ShootBullet(direction, type);
             OnShoot?.Invoke(type);
+            if (audioSource != null && shootSoundList != null)
+            {
+                shootSoundList.PlayRandomSound(audioSource);
+            }
             yield return new WaitForSeconds(cooldown);
         }
         StopShooting();
