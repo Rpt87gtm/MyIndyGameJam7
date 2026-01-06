@@ -204,7 +204,7 @@ MonoBehaviour:
   _bullets: 02000000
   _rangeHold: 4
   _shootTime: 1
-  _wallTime: 2
+  _wallTime: 1.5
   shootCooldown: 0.2
   fleeDistance: 6
   safeDistance: 9
