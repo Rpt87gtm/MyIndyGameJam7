@@ -1,9 +1,6 @@
-using System.Collections;
 using System.Linq;
-using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UI;
 
 
 public class Enemy : MonoBehaviour
@@ -14,7 +11,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float _forceDrop = 0.5f;
     [SerializeField] private float _deadTime = 1f;
     [SerializeField] private EnemyHpBar _enemyHpBar;
-     Animator _animator;
+    Animator _animator;
     private NavMeshAgent _agent;
     private Entity _entity;
     private Player _player;
@@ -23,7 +20,7 @@ public class Enemy : MonoBehaviour
 
 
 
- 
+
     public float ArgRadius => _agrRadius;
     public NavMeshAgent Agent => _agent;
     public Entity CurEntity => _entity;
@@ -35,7 +32,7 @@ public class Enemy : MonoBehaviour
 
     public bool IsFreeze => _entity.IsFreeze;
 
-    
+
 
 
     public bool IsIdle => _entity.IsIdle;
@@ -78,7 +75,7 @@ public class Enemy : MonoBehaviour
             BulletDrop.Drop(_dropItem, _countDrop, _forceDrop, transform.position);
         _animator.Play("Dead");
         _isDead = true;
-        Effect[] effects  = GetComponentsInChildren<Effect>();
+        Effect[] effects = GetComponentsInChildren<Effect>();
         foreach (Effect effect in effects)
             Destroy(effect.gameObject);
         Component[] components = GetComponents<Component>();
@@ -133,7 +130,7 @@ public class Enemy : MonoBehaviour
         if (colliders.Length <= 1)
             return;
         var otherEntity = colliders.Where(col => col.gameObject.TryGetComponent(out Entity entity)).Select(col => col.gameObject.GetComponent<Entity>());
-        foreach ( var ent in otherEntity)
+        foreach (var ent in otherEntity)
         {
             ent.SetIdle(false);
         }

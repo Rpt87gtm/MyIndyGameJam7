@@ -1,6 +1,6 @@
+using bullets;
 using System;
 using System.Collections.Generic;
-using bullets;
 using UnityEngine;
 
 public class BulletsUI : MonoBehaviour

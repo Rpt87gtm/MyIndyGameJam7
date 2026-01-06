@@ -7,13 +7,13 @@ public class EnemySpawnerController : MonoBehaviour
     [SerializeField] private List<GameObject> _enemies;
     [SerializeField] private Door _door;
     [SerializeField] private Door _door2;
-    
-    
+
+
 
     public void SpawnEnemies()
     {
         EnemySpawner[] enemySpawners = GetComponentsInChildren<EnemySpawner>();
-        foreach(EnemySpawner enemySpawner in enemySpawners)
+        foreach (EnemySpawner enemySpawner in enemySpawners)
         {
             _enemies.Add(enemySpawner.SpawnEnemy());
         }

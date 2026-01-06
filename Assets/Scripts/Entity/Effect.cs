@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Effect: MonoBehaviour
+public class Effect : MonoBehaviour
 {
-    
+
     [SerializeField] private TypeEffect _type;
     [SerializeField] private List<TypeEffect> _dropableEffects = new List<TypeEffect>();
     [Range(0.1f, 10f)]
@@ -69,7 +69,7 @@ public class Effect: MonoBehaviour
     private void ReduceDuration(Entity entity)
     {
         _curDuration -= Time.deltaTime;
-        if ( _curDuration <= 0 )
+        if (_curDuration <= 0)
         {
             var effects = entity.Effects.Where(ef => ef != this).ToList();
             entity.ChangeListEffects(effects);

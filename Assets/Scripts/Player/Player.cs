@@ -1,12 +1,8 @@
-using System;
+using bullets;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using bullets;
-using Unity.Burst.Intrinsics;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(Shooter), typeof(Entity))]

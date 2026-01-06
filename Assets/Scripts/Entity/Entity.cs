@@ -1,10 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using NUnit.Framework;
 using UnityEngine;
-using static UnityEngine.EventSystems.EventTrigger;
 
 
 [RequireComponent(typeof(SpriteRenderer))]
@@ -29,7 +25,7 @@ public class Entity : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
 
     public event Action<int> HpChanged;
-  
+
 
 
 
@@ -45,7 +41,7 @@ public class Entity : MonoBehaviour
         _entityData.SetDefaultSpeed();
         _spriteRenderer.color = _defaultColor;
         SetFreeze(false);
-        
+
         foreach (var effect in Effects)
         {
             effect.Tick(this);

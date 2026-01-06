@@ -5,7 +5,7 @@ using UnityEngine;
 public class LineBullet : Bullet
 {
 
-    [SerializeField ]private Effect _effect;
+    [SerializeField] private Effect _effect;
     [SerializeField] private int _baseDmg;
     public float speed = 10;
     private Rigidbody2D rb;
@@ -28,7 +28,7 @@ public class LineBullet : Bullet
         {
             entity.ChangeHp(_baseDmg * -1);
             entity.SetIdle(false);
-            if (_effect  != null)
+            if (_effect != null)
                 entity.AddEffect(_effect);
         }
 

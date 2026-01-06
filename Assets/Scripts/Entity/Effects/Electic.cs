@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using NUnit.Framework;
 using UnityEngine;
 
 public class Electic : Effect
@@ -31,7 +30,7 @@ public class Electic : Effect
         {
             List<Entity> entities = GameObject.FindObjectsByType<Entity>(FindObjectsSortMode.None).ToList();
             Debug.Log("zzz");
-            foreach (var ent  in entities)
+            foreach (var ent in entities)
             {
                 if (ent.Effects.Any(ef => ef.Type == TypeEffect.Water))
                 {

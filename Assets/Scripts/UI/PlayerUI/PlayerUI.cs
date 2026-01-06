@@ -1,7 +1,5 @@
-using System;
-using System.Collections.Generic;
 using bullets;
-using Unity.Burst.Intrinsics;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerUI : MonoBehaviour

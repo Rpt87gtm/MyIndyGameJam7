@@ -11,7 +11,7 @@ public class BigDamage : Effect
     {
         base.StartEffect(entity);
         _curTickTime = _tickTime;
-        TakeDamage(entity,_firstDamage);
+        TakeDamage(entity, _firstDamage);
     }
 
     protected override void UseEffect(Entity entity)

@@ -15,7 +15,7 @@ public class Door : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
         if (_isOpen)
             OpenDoor();
-        else 
+        else
             CloseDoor();
     }
 

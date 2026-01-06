@@ -12,6 +12,6 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
-        gameObject.GetComponent<SpriteRenderer>().enabled = false; 
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
     }
 }

@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using bullets;
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Bullets list", menuName = "Bullets/bullets list")]

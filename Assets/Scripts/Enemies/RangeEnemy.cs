@@ -1,9 +1,6 @@
-using System.Collections.Generic;
-using System.Linq;
 using bullets;
-using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class RangeEnemy : Enemy
 {

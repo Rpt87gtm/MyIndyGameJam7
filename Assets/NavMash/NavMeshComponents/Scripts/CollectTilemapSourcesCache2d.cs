@@ -78,17 +78,17 @@ namespace NavMeshPlus.Extensions
                     _lookup[position] = i;
                 }
             }
-            #if UNITY_EDITOR || UNITY_2022_2_OR_NEWER
+#if UNITY_EDITOR || UNITY_2022_2_OR_NEWER
             Tilemap.tilemapTileChanged -= OnTilemapTileChanged;
             Tilemap.tilemapTileChanged += OnTilemapTileChanged;
-            #endif
+#endif
         }
 
         protected override void OnDestroy()
         {
-            #if UNITY_EDITOR || UNITY_2022_2_OR_NEWER
+#if UNITY_EDITOR || UNITY_2022_2_OR_NEWER
             Tilemap.tilemapTileChanged -= OnTilemapTileChanged;
-            #endif
+#endif
             base.OnDestroy();
         }
     }

@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using bullets;
 using UnityEngine;
 
 public class EntitySupport : MonoBehaviour

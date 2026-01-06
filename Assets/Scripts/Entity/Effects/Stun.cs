@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class Stun : Effect
 {
     protected override void UseEffect(Entity entity)
