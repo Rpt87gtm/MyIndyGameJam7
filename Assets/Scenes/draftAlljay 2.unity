@@ -2884,6 +2884,8 @@ MonoBehaviour:
   inventory: {fileID: 1468225682}
   player: {fileID: 1468225675}
   reloadSounds: {fileID: 11400000, guid: b1fc5b429f76ccd4bbd69b82a43e40ce, type: 2}
+  openReloadSound: {fileID: 8300000, guid: f7a9225b1386ed041b61ef22ed5d0808, type: 3}
+  closeReloadSound: {fileID: 8300000, guid: 3208c2fa7b7c5314a9aac34e85133a95, type: 3}
 --- !u!82 &1468225684
 AudioSource:
   m_ObjectHideFlags: 0

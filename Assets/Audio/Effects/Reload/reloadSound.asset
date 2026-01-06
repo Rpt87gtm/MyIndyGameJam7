@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: reloadSound
   m_EditorClassIdentifier: 
   audioClips:
-  - {fileID: 8300000, guid: 35f78f5ad51b8294ab63a388aacec9fa, type: 3}
+  - {fileID: 8300000, guid: 091541b8782bbc24797c0f84e3586236, type: 3}
   minPitch: 0.9
   maxPitch: 1.1

@@ -17,6 +17,8 @@ public class Reload : MonoBehaviour
     private List<BulletType> _bullets = new();
     private AudioSource audioSource;
     public RandomSoundList reloadSounds;
+    public AudioClip openReloadSound;
+    public AudioClip closeReloadSound;
 
     public List<BulletType> GetBullets()
     {
@@ -79,6 +81,7 @@ public class Reload : MonoBehaviour
     }
     private void StopReload()
     {
+        audioSource.PlayOneShot(closeReloadSound);
         playerUI.StopReload();
         Debug.Log("stop reload");
         isReloading = false;
@@ -104,6 +107,7 @@ public class Reload : MonoBehaviour
         else
         {
             Debug.Log("start reload");
+            audioSource.PlayOneShot(openReloadSound);
             playerUI.StartReload(inventory.GetBulletsCount());
             isReloading = true;
         }
