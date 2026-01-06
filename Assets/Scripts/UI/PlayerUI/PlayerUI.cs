@@ -9,6 +9,7 @@ public class PlayerUI : MonoBehaviour
     public MoveUpDown BarabanUpper;
     public BulletsUI bulletsUI;
     public Baraban baraban;
+    public PlayerHpBar Bar;
     private Reload _reload;
     private List<BulletType> chosenBullet = new();
     private Dictionary<BulletType, int> currentBullets;
@@ -47,5 +48,11 @@ public class PlayerUI : MonoBehaviour
     {
         BarabanUpper.MoveDown();
         bulletsUI.hideBullets();
+    }
+
+    public void SubscribeBar(Entity entity)
+    {
+        Bar.CurEntity = entity;
+        Bar.Subs();
     }
 }

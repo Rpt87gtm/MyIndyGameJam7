@@ -12,13 +12,18 @@ public class PlayerHpBar : MonoBehaviour
         _slider.value = hp;
     }
 
-    private void Start()
+    public void Subs()
     {
-        Entity CurEntity = FindFirstObjectByType<Player>().GetComponent<Entity>();
         _slider = GetComponent<Slider>();
         _slider.maxValue = CurEntity.GetMaxHp();
         _slider.value = CurEntity.GetCurHp();
         CurEntity.HpChanged += SetHpInCanvas;
+        Debug.Log("G");
+    }
+
+    private void FixedUpdate()
+    {
+        _slider.value = CurEntity.GetCurHp();
     }
 
     private void OnDisable()

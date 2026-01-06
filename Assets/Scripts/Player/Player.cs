@@ -58,6 +58,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         playerUI = GameObject.FindGameObjectWithTag("PlayerUI").GetComponent<PlayerUI>();
+        playerUI.SubscribeBar(_entity);
         Respawn();
     }
     private void OnShoot(BulletType type)
