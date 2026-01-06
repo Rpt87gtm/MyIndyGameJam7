@@ -178,6 +178,10 @@ public class Player : MonoBehaviour
 
     public void Dead()
     {
+        Effect[] effects = GetComponentsInChildren<Effect>();
+        foreach (Effect effect in effects)
+            Destroy(effect.gameObject);
+        _entity.Effects.Clear();
         _entity.SetDefaultHp();
         if (Spawner != null )
             Spawner.RespawnEnemies();
