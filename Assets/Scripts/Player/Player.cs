@@ -6,6 +6,7 @@ using bullets;
 using Unity.Burst.Intrinsics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(Shooter), typeof(Entity))]
@@ -24,6 +25,7 @@ public class Player : MonoBehaviour
     private Coroutine flipCooldownCoroutine;
     private Entity _entity;
     private PlayerUI playerUI;
+    public SaveZone Spawner;
 
     private void Awake()
     {
@@ -38,6 +40,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         playerUI = GameObject.FindGameObjectWithTag("PlayerUI").GetComponent<PlayerUI>();
+        Respawn();
     }
     private void OnShoot(BulletType type)
     {
@@ -175,7 +178,17 @@ public class Player : MonoBehaviour
 
     public void Dead()
     {
-        Destroy(gameObject);
-        Debug.Log("�� ������");
+        _entity.SetDefaultHp();
+        if (Spawner != null )
+            Spawner.RespawnEnemies();
+        Respawn();
+    }
+
+    public void Respawn()
+    {
+        if (Spawner != null)
+        {
+            transform.position = Spawner.transform.position;   
+        }
     }
 }

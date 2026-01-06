@@ -79,7 +79,8 @@ public class Entity : MonoBehaviour
     public void ChangeHp(int hp)
     {
         _entityData.ChangeHp(hp);
-        HpChanged.Invoke(GetCurHp());
+        if (HpChanged != null)
+            HpChanged.Invoke(GetCurHp());
     }
 
     public void InitEntity()
@@ -111,6 +112,11 @@ public class Entity : MonoBehaviour
     public int GetMaxHp()
     {
         return _entityData.MaxHp;
+    }
+
+    public void SetDefaultHp()
+    {
+        _entityData.HpSetDefault();
     }
 
 
