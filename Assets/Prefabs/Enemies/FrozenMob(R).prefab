@@ -82,7 +82,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: -7078261816480267791, guid: bfeede70efd14484683f5956b4f1194b, type: 3}
+  m_Sprite: {fileID: -2000268747637794363, guid: e7c34e89366f6824ab1ca0325513ef15, type: 3}
   m_Color: {r: 0, g: 1, b: 0.952054, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -149,17 +149,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.4802389}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3, y: 1}
+    oldSize: {x: 2, y: 2}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.80042267, y: 1.1122627}
   m_EdgeRadius: 0
 --- !u!195 &6143914862246143842
 NavMeshAgent:
@@ -223,6 +223,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletsList: {fileID: 11400000, guid: 7d7be726a92bf74418c84b85d71f9675, type: 2}
   spawnPosition: {fileID: 4713103410607407825}
+  shootSoundList: {fileID: 0}
 --- !u!95 &7351686942025981424
 Animator:
   serializedVersion: 7
