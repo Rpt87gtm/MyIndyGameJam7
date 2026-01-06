@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class EnemyHpBar : MonoBehaviour
@@ -24,12 +25,18 @@ public class EnemyHpBar : MonoBehaviour
 
     private void OnDisable()
     {
-        CurEntity.HpChanged -= SetHpInCanvas;
+        if (CurEntity != null)
+            CurEntity.HpChanged -= SetHpInCanvas;
     }
 
     private void FixedUpdate()
     {
         Vector3 vector = _offset;
+        if (CurEntity == null)
+        {
+            Destroy(gameObject);
+            return;
+        }
         transform.position = CurEntity.transform.position + vector;
     }
 }
